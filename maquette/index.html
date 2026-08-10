@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WK Multi-Services — Motos, accessoires et location à Abidjan</title>
+<meta name="description" content="Vente de motos, accessoires et équipements, location de motos et de voitures, entretien. Marcory Zone 4, Abidjan. Commandez en un clic sur WhatsApp.">
+<meta name="theme-color" content="#0A0A0B">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="WK Multi-Services — Motos, accessoires et location à Abidjan">
+<meta property="og:description" content="Qualité, fiabilité, juste prix. Vente • Location • Entretien à Marcory Zone 4.">
+<meta property="og:image" content="assets/img/hero-poster.webp">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="assets/img/hero-poster.webp" media="(min-width:801px)" fetchpriority="high">
+<link rel="preload" as="image" href="assets/img/hero-poster-sm.webp" media="(max-width:800px)" fetchpriority="high">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     ⚙️  CONFIGURATION — LES 2 SEULES LIGNES À MODIFIER AVANT MISE EN LIGNE
+     ═══════════════════════════════════════════════════════════════════ -->
+<script>
+window.WK_CONFIG = {
+  // Numéro WhatsApp Business, format international sans + ni espaces.
+  WHATSAPP_NUMBER: "2250701125770",
+
+  // ⚠️ REMPLACER PAR L'ID DU PIXEL META (15-16 chiffres).
+  // Tant que la valeur reste "PIXEL_ID", le pixel ne se charge pas.
+  PIXEL_ID: "PIXEL_ID"
+};
+</script>
+
+<style>
+/* ─────────────────────────────  BASE  ───────────────────────────── */
+:root{
+  --noir:#0A0A0B;
+  --noir-2:#131316;
+  --noir-3:#1C1C21;
+  --orange:#E85D04;
+  --orange-clair:#FB8B24;
+  --or:#C9A227;
+  --creme:#F6F2EA;
+  --gris:#9A9AA3;
+  --bord:rgba(255,255,255,.10);
+  --rayon:14px;
+  --max:1240px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--noir);color:var(--creme);
+  font-family:"Plus Jakarta Sans",system-ui,sans-serif;
+  font-size:16px;line-height:1.6;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img,video{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+.conteneur{width:100%;max-width:var(--max);margin-inline:auto;padding-inline:20px}
+h1,h2,h3,.display{font-family:Anton,Impact,sans-serif;font-weight:400;letter-spacing:.01em;line-height:.95;text-transform:uppercase}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ────────────────────────  BANDEAU DÉFILANT  ──────────────────────── */
+.annonce{background:var(--orange);color:#fff;overflow:hidden;padding:9px 0;font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.annonce__piste{display:flex;width:max-content;animation:defile 34s linear infinite}
+.annonce__groupe{display:flex;gap:44px;padding-right:44px;white-space:nowrap}
+@keyframes defile{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ─────────────────────────────  ENTÊTE  ───────────────────────────── */
+.entete{position:sticky;top:0;z-index:60;background:rgba(10,10,11,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--bord)}
+.entete__in{display:flex;align-items:center;gap:24px;height:70px}
+.logo{display:flex;align-items:center;gap:11px;flex-shrink:0}
+.logo img{width:38px;height:auto}
+.logo__txt{font-family:Anton,sans-serif;font-size:23px;letter-spacing:.04em;line-height:1}
+.logo__txt small{display:block;font-family:"Plus Jakarta Sans",sans-serif;font-size:8.5px;font-weight:700;letter-spacing:.3em;color:var(--orange);margin-top:2px}
+.nav{display:flex;gap:26px;margin-left:auto;font-size:13.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.nav a{color:var(--gris);transition:color .2s}
+.nav a:hover{color:var(--creme)}
+.entete__actions{display:flex;align-items:center;gap:10px;margin-left:auto}
+.entete .nav+.entete__actions{margin-left:0}
+.bouton-panier{position:relative;display:flex;align-items:center;gap:8px;padding:9px 16px;border:1px solid var(--bord);border-radius:100px;font-size:13px;font-weight:700;transition:border-color .2s,background .2s}
+.bouton-panier:hover{border-color:var(--orange);background:rgba(232,93,4,.10)}
+.pastille{min-width:19px;height:19px;padding:0 5px;border-radius:100px;background:var(--orange);color:#fff;font-size:11px;font-weight:800;display:grid;place-items:center}
+.burger{display:none;width:40px;height:40px;place-items:center;border:1px solid var(--bord);border-radius:10px}
+.burger span{display:block;width:17px;height:2px;background:var(--creme);box-shadow:0 -5px 0 var(--creme),0 5px 0 var(--creme)}
+
+/* ─────────────────────────────  HERO  ───────────────────────────── */
+.hero{position:relative;min-height:min(88vh,780px);display:flex;align-items:flex-end;overflow:hidden;isolation:isolate}
+.hero__media{position:absolute;inset:0;z-index:-2}
+.hero__media img,.hero__media video{width:100%;height:100%;object-fit:cover}
+.hero__media video{opacity:0;transition:opacity .8s ease}
+.hero__media video.pret{opacity:1}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,rgba(10,10,11,.96) 4%,rgba(10,10,11,.55) 38%,rgba(10,10,11,.15) 70%,rgba(10,10,11,.5) 100%)}
+.hero__in{padding:60px 0 44px;width:100%}
+.hero__sur{display:inline-flex;align-items:center;gap:9px;font-size:11.5px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--or);margin-bottom:16px}
+.hero__sur::before{content:"";width:26px;height:1px;background:var(--or)}
+.hero h1{font-size:clamp(42px,8.4vw,92px);max-width:15ch}
+.hero h1 em{font-style:normal;color:var(--orange)}
+.hero__p{margin-top:16px;max-width:46ch;color:#D8D4CC;font-size:clamp(15px,1.7vw,18px)}
+.hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:15px 27px;border-radius:100px;font-size:14px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;transition:transform .18s,background .2s,border-color .2s}
+.btn:active{transform:translateY(1px)}
+.btn--orange{background:var(--orange);color:#fff}
+.btn--orange:hover{background:var(--orange-clair)}
+.btn--wa{background:#22B455;color:#fff}
+.btn--wa:hover{background:#28cc61}
+.btn--fantome{border:1px solid rgba(255,255,255,.28);color:var(--creme)}
+.btn--fantome:hover{border-color:var(--creme);background:rgba(255,255,255,.07)}
+.btn--plein{width:100%}
+
+/* réassurance */
+.reassurance{border-top:1px solid var(--bord);border-bottom:1px solid var(--bord);background:var(--noir-2)}
+.reassurance__grille{display:grid;grid-template-columns:repeat(4,1fr)}
+.reassurance__item{padding:20px 22px;display:flex;gap:12px;align-items:center;border-right:1px solid var(--bord)}
+.reassurance__item:last-child{border-right:none}
+.reassurance__item svg{width:22px;height:22px;color:var(--orange);flex-shrink:0}
+.reassurance b{display:block;font-size:13px;letter-spacing:.02em}
+.reassurance span{font-size:12px;color:var(--gris)}
+
+/* ─────────────────────────  TITRES DE SECTION  ───────────────────── */
+section{padding:76px 0}
+.entete-sec{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:34px;flex-wrap:wrap}
+.entete-sec__eyebrow{font-size:11.5px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);margin-bottom:10px}
+.entete-sec h2{font-size:clamp(30px,4.6vw,50px)}
+.entete-sec p{color:var(--gris);max-width:52ch;margin-top:10px}
+.lien-fleche{font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);white-space:nowrap}
+
+/* ─────────────────────────────  CATÉGORIES  ─────────────────────── */
+.categories{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.categorie{position:relative;aspect-ratio:1/1.12;border-radius:var(--rayon);overflow:hidden;border:1px solid var(--bord);background:var(--noir-2);display:flex;align-items:flex-end;padding:16px;transition:border-color .25s,transform .25s}
+.categorie:hover{border-color:var(--orange);transform:translateY(-4px)}
+.categorie img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.62;transition:opacity .3s,transform .5s}
+.categorie:hover img{opacity:.8;transform:scale(1.05)}
+.categorie::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,11,.92),transparent 62%)}
+.categorie__txt{position:relative;z-index:1}
+.categorie b{font-family:Anton,sans-serif;font-size:16px;letter-spacing:.03em;text-transform:uppercase;display:block}
+.categorie span{font-size:11.5px;color:var(--gris)}
+
+/* ─────────────────────────────  PRODUITS  ───────────────────────── */
+.grille-produits{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.produit{border:1px solid var(--bord);border-radius:var(--rayon);background:var(--noir-2);overflow:hidden;display:flex;flex-direction:column;transition:border-color .25s,transform .25s}
+.produit:hover{border-color:rgba(232,93,4,.55);transform:translateY(-4px)}
+.produit__img{position:relative;aspect-ratio:4/3;background:var(--noir-3);overflow:hidden}
+.produit__img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.produit:hover .produit__img img{transform:scale(1.06)}
+.produit__badge{position:absolute;top:11px;left:11px;padding:5px 11px;border-radius:100px;background:var(--orange);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.produit__corps{padding:16px;display:flex;flex-direction:column;gap:5px;flex:1}
+.produit__cat{font-size:10.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--or)}
+.produit h3{font-size:17px;letter-spacing:.01em;line-height:1.15}
+.produit__desc{font-size:13px;color:var(--gris);flex:1}
+.produit__bas{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}
+.produit__prix{font-family:Anton,sans-serif;font-size:20px;color:var(--creme);letter-spacing:.02em}
+.produit__prix small{display:block;font-family:"Plus Jakarta Sans",sans-serif;font-size:10.5px;font-weight:700;color:var(--gris);letter-spacing:.06em;text-transform:uppercase}
+.btn-ajout{display:grid;place-items:center;width:42px;height:42px;border-radius:11px;background:var(--orange);color:#fff;flex-shrink:0;transition:background .2s,transform .15s}
+.btn-ajout:hover{background:var(--orange-clair)}
+.btn-ajout:active{transform:scale(.93)}
+.btn-ajout svg{width:19px;height:19px}
+
+/* repli quand la photo produit n'existe pas encore */
+.produit__img.sans-img,.categorie.sans-img{background:
+  repeating-linear-gradient(135deg,var(--noir-3) 0 12px,#232329 12px 24px)}
+.produit__img.sans-img::after{content:"Photo à venir";position:absolute;inset:0;display:grid;place-items:center;
+  font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:rgba(246,242,234,.35)}
+.ligne .sans-img{display:none}
+
+/* ─────────────────────────────  LOCATION  ───────────────────────── */
+.location{background:var(--noir-2);border-block:1px solid var(--bord)}
+.location__grille{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.loc-carte{position:relative;border-radius:var(--rayon);overflow:hidden;border:1px solid var(--bord);min-height:400px;display:flex;flex-direction:column;justify-content:flex-end;padding:28px}
+.loc-carte img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5}
+.loc-carte::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,11,.95),rgba(10,10,11,.35))}
+.loc-carte__in{position:relative;z-index:1}
+.loc-carte h3{font-size:clamp(24px,3.2vw,34px);margin-bottom:8px}
+.loc-carte p{color:#CFCBC3;font-size:14.5px;max-width:40ch}
+.loc-tarifs{display:flex;gap:22px;margin:18px 0 20px;flex-wrap:wrap}
+.loc-tarif b{font-family:Anton,sans-serif;font-size:22px;display:block;letter-spacing:.02em}
+.loc-tarif span{font-size:11px;color:var(--gris);letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+.loc-form{display:flex;gap:9px;flex-wrap:wrap}
+.loc-form input,.loc-form select{flex:1;min-width:130px;padding:12px 13px;border-radius:10px;border:1px solid var(--bord);background:rgba(0,0,0,.45);color:var(--creme);font-size:13.5px;font-family:inherit}
+.loc-form input:focus,.loc-form select:focus{outline:none;border-color:var(--orange)}
+.loc-form input::-webkit-calendar-picker-indicator{filter:invert(.75)}
+
+/* ─────────────────────────────  ENTRETIEN  ─────────────────────── */
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.service{border:1px solid var(--bord);border-radius:var(--rayon);padding:26px;background:var(--noir-2);transition:border-color .25s}
+.service:hover{border-color:rgba(232,93,4,.5)}
+.service__num{font-family:Anton,sans-serif;font-size:34px;color:rgba(232,93,4,.32);line-height:1;margin-bottom:12px}
+.service h3{font-size:19px;margin-bottom:8px}
+.service p{font-size:14px;color:var(--gris)}
+.service ul{list-style:none;margin-top:14px;display:flex;flex-direction:column;gap:7px}
+.service li{font-size:13.5px;color:#C6C2BA;padding-left:19px;position:relative}
+.service li::before{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;border-radius:50%;background:var(--orange)}
+
+/* ─────────────────────────  TÉMOIGNAGES  ───────────────────────── */
+.temoignages{background:var(--noir-2);border-block:1px solid var(--bord);overflow:hidden}
+.temoignages__colonnes{display:flex;justify-content:center;gap:18px;margin-top:14px;max-height:720px;overflow:hidden;
+  -webkit-mask-image:linear-gradient(to bottom,transparent,#000 11%,#000 89%,transparent);
+  mask-image:linear-gradient(to bottom,transparent,#000 11%,#000 89%,transparent)}
+.tcol{display:flex;flex-direction:column;gap:18px;flex-shrink:0;width:320px;animation:defileY var(--duree,17s) linear infinite}
+@keyframes defileY{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+.temoin{border:1px solid var(--bord);border-radius:22px;background:var(--noir);padding:26px;transition:transform .3s,border-color .3s}
+.temoin:hover{transform:translateY(-6px) scale(1.02);border-color:rgba(232,93,4,.5)}
+.temoin p{font-size:14.5px;color:#C9C5BD;line-height:1.65}
+.temoin__pied{display:flex;align-items:center;gap:11px;margin-top:18px}
+.temoin__av{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--orange),var(--or));color:#0A0A0B;font-family:Anton,sans-serif;font-size:15px;flex-shrink:0}
+.temoin cite{display:block;font-style:normal;font-weight:700;font-size:14px;letter-spacing:-.01em}
+.temoin small{font-size:12.5px;color:var(--gris)}
+@media(prefers-reduced-motion:reduce){.tcol,.annonce__piste{animation:none}}
+
+/* ─────────────────────────────  PIED  ───────────────────────────── */
+.pied-enveloppe{position:relative;height:100vh;min-height:640px;clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
+.pied{position:fixed;bottom:0;left:0;width:100%;height:100vh;min-height:640px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;background:var(--noir)}
+.pied__aurore{position:absolute;left:50%;top:50%;width:80vw;height:58vh;transform:translate(-50%,-50%);border-radius:50%;filter:blur(80px);pointer-events:none;
+  background:radial-gradient(circle at 50% 50%,rgba(232,93,4,.20) 0%,rgba(201,162,39,.14) 42%,transparent 70%);
+  animation:respire 8s ease-in-out infinite alternate}
+@keyframes respire{from{transform:translate(-50%,-50%) scale(1);opacity:.6}to{transform:translate(-50%,-50%) scale(1.1);opacity:1}}
+.pied__grille{position:absolute;inset:0;pointer-events:none;background-size:60px 60px;
+  background-image:linear-gradient(to right,rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,.035) 1px,transparent 1px);
+  -webkit-mask-image:linear-gradient(to bottom,transparent,#000 30%,#000 70%,transparent);
+  mask-image:linear-gradient(to bottom,transparent,#000 30%,#000 70%,transparent)}
+.pied__geant{position:absolute;bottom:-4vh;left:50%;transform:translateX(-50%);white-space:nowrap;pointer-events:none;user-select:none;
+  font-family:Anton,sans-serif;font-size:25vw;line-height:.75;letter-spacing:-.03em;color:transparent;
+  -webkit-text-stroke:1px rgba(255,255,255,.07);
+  background:linear-gradient(180deg,rgba(255,255,255,.11) 0%,transparent 60%);
+  -webkit-background-clip:text;background-clip:text}
+.pied__marquee{position:absolute;top:52px;left:0;width:100%;overflow:hidden;padding:13px 0;z-index:2;
+  border-block:1px solid var(--bord);background:rgba(10,10,11,.6);backdrop-filter:blur(10px);
+  transform:rotate(-2deg) scale(1.1);box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.pied__marquee .annonce__piste{animation-duration:40s}
+.pied__marquee span{font-size:12px;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--gris)}
+.pied__centre{position:relative;z-index:3;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 20px;margin-top:70px;text-align:center}
+.pied__centre h2{font-size:clamp(38px,8vw,86px);margin-bottom:34px;
+  background:linear-gradient(180deg,var(--creme) 0%,rgba(246,242,234,.42) 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 0 22px rgba(255,255,255,.13))}
+.pilules{display:flex;flex-wrap:wrap;justify-content:center;gap:13px}
+.pilules--sec{margin-top:14px}
+.pilule{display:inline-flex;align-items:center;gap:11px;padding:17px 34px;border-radius:100px;font-weight:800;font-size:14.5px;
+  background:linear-gradient(145deg,rgba(255,255,255,.05),rgba(255,255,255,.015));
+  border:1px solid rgba(255,255,255,.09);backdrop-filter:blur(16px);
+  box-shadow:0 10px 30px -10px rgba(0,0,0,.5),inset 0 1px 1px rgba(255,255,255,.10);
+  transition:all .4s cubic-bezier(.16,1,.3,1)}
+.pilule:hover{border-color:rgba(255,255,255,.22);background:linear-gradient(145deg,rgba(255,255,255,.10),rgba(255,255,255,.03));
+  box-shadow:0 20px 40px -10px rgba(0,0,0,.6),inset 0 1px 1px rgba(255,255,255,.2)}
+.pilule svg{width:21px;height:21px}
+.pilule--sec{padding:11px 22px;font-size:12.5px;font-weight:700;color:var(--gris)}
+.pilule--sec:hover{color:var(--creme)}
+.pied__bas{position:relative;z-index:4;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:0 24px 30px}
+.pied__copy{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gris)}
+.pied__signature{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:100px;border:1px solid var(--bord);
+  font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gris)}
+.pied__signature b{color:var(--creme);letter-spacing:.02em;font-size:12.5px}
+.coeur{color:#E1373F;animation:battement 2s cubic-bezier(.25,1,.5,1) infinite;display:inline-block}
+@keyframes battement{0%,100%{transform:scale(1)}15%,45%{transform:scale(1.2)}30%{transform:scale(1)}}
+.haut{display:grid;place-items:center;width:48px;height:48px;border-radius:50%;border:1px solid var(--bord);color:var(--gris);transition:color .3s,border-color .3s}
+.haut:hover{color:var(--creme);border-color:rgba(255,255,255,.3)}
+.haut svg{width:19px;height:19px;transition:transform .3s}
+.haut:hover svg{transform:translateY(-5px)}
+
+/* ─────────────────────────  PANIER (TIROIR)  ───────────────────── */
+.voile{position:fixed;inset:0;z-index:90;background:rgba(0,0,0,.66);backdrop-filter:blur(3px);opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+.voile.ouvert{opacity:1;visibility:visible}
+.tiroir{position:fixed;top:0;right:0;z-index:100;width:min(420px,100%);height:100%;display:flex;flex-direction:column;
+  background:var(--noir-2);border-left:1px solid var(--bord);transform:translateX(100%);transition:transform .38s cubic-bezier(.16,1,.3,1)}
+.tiroir.ouvert{transform:translateX(0)}
+.tiroir__haut{display:flex;align-items:center;justify-content:space-between;padding:20px 22px;border-bottom:1px solid var(--bord)}
+.tiroir__haut h2{font-size:21px}
+.fermer{width:36px;height:36px;display:grid;place-items:center;border-radius:9px;border:1px solid var(--bord);font-size:19px;line-height:1}
+.tiroir__corps{flex:1;overflow-y:auto;padding:18px 22px;display:flex;flex-direction:column;gap:14px}
+.tiroir__vide{margin:auto;text-align:center;color:var(--gris);font-size:14.5px}
+.tiroir__vide svg{width:52px;height:52px;margin:0 auto 14px;color:var(--noir-3)}
+.ligne{display:flex;gap:12px;align-items:center}
+.ligne img{width:64px;height:64px;object-fit:cover;border-radius:10px;flex-shrink:0;background:var(--noir-3)}
+.ligne__in{flex:1;min-width:0}
+.ligne b{display:block;font-size:14px;font-weight:700;line-height:1.25}
+.ligne small{font-size:12.5px;color:var(--orange);font-weight:700}
+.qte{display:flex;align-items:center;gap:9px;margin-top:6px}
+.qte button{width:25px;height:25px;border-radius:7px;border:1px solid var(--bord);display:grid;place-items:center;font-size:15px;line-height:1}
+.qte button:hover{border-color:var(--orange)}
+.qte span{font-size:13.5px;font-weight:700;min-width:16px;text-align:center}
+.retirer{color:var(--gris);font-size:11.5px;text-decoration:underline;margin-top:5px}
+.tiroir__bas{border-top:1px solid var(--bord);padding:20px 22px;display:flex;flex-direction:column;gap:13px}
+.total{display:flex;justify-content:space-between;align-items:baseline}
+.total span{font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gris);font-weight:700}
+.total b{font-family:Anton,sans-serif;font-size:26px}
+.champs{display:flex;flex-direction:column;gap:9px}
+.champs input,.champs textarea{padding:12px 13px;border-radius:10px;border:1px solid var(--bord);background:rgba(0,0,0,.4);color:var(--creme);font-size:13.5px;font-family:inherit;resize:vertical}
+.champs input:focus,.champs textarea:focus{outline:none;border-color:var(--orange)}
+.note-tiroir{font-size:11.5px;color:var(--gris);text-align:center}
+
+/* bouton WhatsApp flottant */
+.wa-flottant{position:fixed;right:18px;bottom:18px;z-index:80;display:grid;place-items:center;width:56px;height:56px;border-radius:50%;
+  background:#22B455;color:#fff;box-shadow:0 10px 28px rgba(34,180,85,.42);transition:transform .2s}
+.wa-flottant:hover{transform:scale(1.08)}
+.wa-flottant svg{width:29px;height:29px}
+
+/* toast */
+.toast{position:fixed;left:50%;bottom:88px;z-index:110;transform:translate(-50%,20px);opacity:0;pointer-events:none;
+  padding:13px 22px;border-radius:100px;background:var(--creme);color:var(--noir);font-size:13.5px;font-weight:800;
+  transition:opacity .3s,transform .3s}
+.toast.visible{opacity:1;transform:translate(-50%,0)}
+
+/* bandeau maquette */
+.avis-maquette{background:#1D1606;border-bottom:1px solid rgba(201,162,39,.35);color:#E4C86A;font-size:12.5px;padding:9px 0;text-align:center}
+.avis-maquette b{color:#F3DE9B}
+
+/* ─────────────────────────────  RESPONSIVE  ─────────────────────── */
+@media(max-width:1080px){
+  .grille-produits{grid-template-columns:repeat(3,1fr)}
+  .categories{grid-template-columns:repeat(3,1fr)}
+  .reassurance__grille{grid-template-columns:repeat(2,1fr)}
+  .reassurance__item:nth-child(2){border-right:none}
+  .reassurance__item:nth-child(-n+2){border-bottom:1px solid var(--bord)}
+}
+@media(max-width:860px){
+  .nav{display:none}
+  .burger{display:grid}
+  .location__grille{grid-template-columns:1fr}
+  .services{grid-template-columns:1fr}
+  .grille-produits{grid-template-columns:repeat(2,1fr)}
+  .hero{min-height:78vh}
+  section{padding:56px 0}
+  .pied__marquee{top:34px}
+  .pied__centre{margin-top:50px}
+  .pied__bas{justify-content:center;text-align:center}
+}
+@media(max-width:560px){
+  .categories{grid-template-columns:repeat(2,1fr)}
+  .grille-produits{grid-template-columns:1fr 1fr;gap:12px}
+  .produit__corps{padding:13px}
+  .produit h3{font-size:15px}
+  .produit__desc{display:none}
+  .produit__prix{font-size:17px}
+  .btn-ajout{width:38px;height:38px}
+  .tcol{width:270px}
+  .entete__in{height:62px;gap:12px}
+  .logo__txt{font-size:19px}
+  .btn{padding:14px 22px;font-size:13px}
+  .hero__cta .btn{flex:1}
+}
+</style>
+</head>
+<body>
+
+<div class="avis-maquette conteneur-plein">
+  <div class="conteneur"><b>Maquette de démonstration</b> — le catalogue, les prix et les avis sont provisoires et doivent être remplacés par les données réelles du client.</div>
+</div>
+
+<!-- ─── BANDEAU DÉFILANT ─── -->
+<div class="annonce">
+  <div class="annonce__piste" id="pisteAnnonce">
+    <div class="annonce__groupe">
+      <span>🏍️ Vente • Location • Entretien</span><span>✦</span>
+      <span>Marcory Zone 4, Abidjan</span><span>✦</span>
+      <span>Commande en 1 clic sur WhatsApp</span><span>✦</span>
+      <span>Qualité, fiabilité, juste prix</span><span>✦</span>
+      <span>Livraison dans tout Abidjan</span><span>✦</span>
+    </div>
+  </div>
+</div>
+
+<!-- ─── ENTÊTE ─── -->
+<header class="entete">
+  <div class="conteneur entete__in">
+    <a href="#" class="logo" aria-label="WK Multi-Services, accueil">
+      <img src="assets/img/crown.webp" alt="" width="38" height="21">
+      <span class="logo__txt">WK<small>Multi-Services</small></span>
+    </a>
+    <nav class="nav">
+      <a href="#motos">Motos</a>
+      <a href="#accessoires">Accessoires</a>
+      <a href="#location">Location</a>
+      <a href="#entretien">Entretien</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="entete__actions">
+      <button class="bouton-panier" id="ouvrirPanier" aria-label="Ouvrir le panier">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="17" height="17"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg>
+        <span>Panier</span><span class="pastille" id="pastille">0</span>
+      </button>
+      <button class="burger" id="burger" aria-label="Menu"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ─── HERO ─── -->
+<section class="hero" style="padding:0">
+  <div class="hero__media">
+    <picture>
+      <source media="(max-width:800px)" srcset="assets/img/hero-poster-sm.webp">
+      <img src="assets/img/hero-poster.webp" alt="Pilote sur une moto tout-terrain électrique orange traversant le pont d'Abidjan au coucher du soleil" width="1280" height="720" fetchpriority="high">
+    </picture>
+    <video id="heroVideo" muted loop playsinline preload="none" aria-hidden="true"
+           style="position:absolute;inset:0"></video>
+  </div>
+  <div class="conteneur hero__in">
+    <div class="hero__sur">Abidjan · Marcory Zone 4</div>
+    <h1>Roulez plus loin,<br>dépensez <em>moins</em>.</h1>
+    <p class="hero__p">Motos, accessoires et équipements sélectionnés. Location de motos et de voitures. Entretien assuré par nos mécaniciens. Vous commandez ici, on finalise ensemble sur WhatsApp.</p>
+    <div class="hero__cta">
+      <a href="#motos" class="btn btn--orange">Voir les motos</a>
+      <a href="#location" class="btn btn--fantome">Louer un véhicule</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── RÉASSURANCE ─── -->
+<div class="reassurance">
+  <div class="conteneur" style="padding-inline:0">
+    <div class="reassurance__grille">
+      <div class="reassurance__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 3 6v6c0 5 3.8 9.4 9 10 5.2-.6 9-5 9-10V6l-9-4z"/><path d="m9 12 2 2 4-4"/></svg>
+        <div><b>Matériel vérifié</b><span>Contrôlé avant livraison</span></div>
+      </div>
+      <div class="reassurance__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 17h4V5H2v12h3m5 0H5m5 0a2 2 0 1 0 4 0m0 0h4m-4 0a2 2 0 1 0 4 0M14 9h4l4 4v4h-3m0 0a2 2 0 1 1-4 0"/></svg>
+        <div><b>Livraison Abidjan</b><span>Toutes communes</span></div>
+      </div>
+      <div class="reassurance__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        <div><b>Entretien sur place</b><span>Mécaniciens qualifiés</span></div>
+      </div>
+      <div class="reassurance__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.2a8.4 8.4 0 0 1-.9-3.8 8.4 8.4 0 0 1 8.4-9 8.4 8.4 0 0 1 8.6 8.5z"/></svg>
+        <div><b>Réponse rapide</b><span>Sur WhatsApp Business</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── CATÉGORIES ─── -->
+<section id="categories">
+  <div class="conteneur">
+    <div class="entete-sec">
+      <div>
+        <div class="entete-sec__eyebrow">Nos univers</div>
+        <h2>Par où on commence&nbsp;?</h2>
+      </div>
+    </div>
+    <div class="categories" id="grilleCategories"></div>
+  </div>
+</section>
+
+<!-- ─── MOTOS ─── -->
+<section id="motos" style="padding-top:0">
+  <div class="conteneur">
+    <div class="entete-sec">
+      <div>
+        <div class="entete-sec__eyebrow">Vente</div>
+        <h2>Nos motos</h2>
+        <p>Thermiques et électriques, du deux-roues urbain à la tout-terrain. Chaque machine est révisée et livrée prête à rouler.</p>
+      </div>
+      <a href="#contact" class="lien-fleche">Un modèle précis ? →</a>
+    </div>
+    <div class="grille-produits" id="grilleMotos"></div>
+  </div>
+</section>
+
+<!-- ─── LOCATION ─── -->
+<section id="location" class="location">
+  <div class="conteneur">
+    <div class="entete-sec">
+      <div>
+        <div class="entete-sec__eyebrow">Location</div>
+        <h2>Deux ou quatre roues,<br>à la journée comme au mois</h2>
+        <p>Choisissez vos dates, on vous confirme la disponibilité sur WhatsApp en quelques minutes.</p>
+      </div>
+    </div>
+    <div class="location__grille">
+
+      <article class="loc-carte">
+        <picture>
+          <source media="(max-width:800px)" srcset="assets/img/loc-moto-sm.webp">
+          <img src="assets/img/loc-moto.webp" alt="Moto de location garée dans une rue d'Abidjan" loading="lazy" decoding="async" width="1200" height="896">
+        </picture>
+        <div class="loc-carte__in">
+          <h3>Location de moto</h3>
+          <p>Idéale pour les livraisons, les déplacements quotidiens ou le dépannage. Casque fourni.</p>
+          <div class="loc-tarifs">
+            <div class="loc-tarif"><b>15 000 F</b><span>La journée</span></div>
+            <div class="loc-tarif"><b>85 000 F</b><span>La semaine</span></div>
+            <div class="loc-tarif"><b>280 000 F</b><span>Le mois</span></div>
+          </div>
+          <form class="loc-form" data-loc="moto">
+            <input type="date" aria-label="Date de début" required>
+            <select aria-label="Durée">
+              <option>1 jour</option><option>2 à 3 jours</option>
+              <option>1 semaine</option><option>1 mois</option>
+            </select>
+            <button type="submit" class="btn btn--wa" style="flex:1 0 100%;margin-top:4px">
+              Réserver sur WhatsApp
+            </button>
+          </form>
+        </div>
+      </article>
+
+      <article class="loc-carte">
+        <picture>
+          <source media="(max-width:800px)" srcset="assets/img/loc-voiture-sm.webp">
+          <img src="assets/img/loc-voiture.webp" alt="SUV de location dans une avenue d'Abidjan" loading="lazy" decoding="async" width="1200" height="896">
+        </picture>
+        <div class="loc-carte__in">
+          <h3>Location de voiture</h3>
+          <p>Berline ou SUV, avec ou sans chauffeur. Pour vos déplacements professionnels, cérémonies et transferts aéroport.</p>
+          <div class="loc-tarifs">
+            <div class="loc-tarif"><b>35 000 F</b><span>Berline / jour</span></div>
+            <div class="loc-tarif"><b>55 000 F</b><span>SUV / jour</span></div>
+            <div class="loc-tarif"><b>+15 000 F</b><span>Avec chauffeur</span></div>
+          </div>
+          <form class="loc-form" data-loc="voiture">
+            <input type="date" aria-label="Date de début" required>
+            <select aria-label="Type de véhicule">
+              <option>Berline</option><option>SUV</option>
+              <option>Berline + chauffeur</option><option>SUV + chauffeur</option>
+            </select>
+            <button type="submit" class="btn btn--wa" style="flex:1 0 100%;margin-top:4px">
+              Réserver sur WhatsApp
+            </button>
+          </form>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── ACCESSOIRES ─── -->
+<section id="accessoires">
+  <div class="conteneur">
+    <div class="entete-sec">
+      <div>
+        <div class="entete-sec__eyebrow">Équipement</div>
+        <h2>Accessoires &amp; pièces</h2>
+        <p>Casques, protections, antivols, pièces d'usure. Ce qu'il faut pour rouler protégé et garder sa machine en forme.</p>
+      </div>
+    </div>
+    <div class="grille-produits" id="grilleAccessoires"></div>
+  </div>
+</section>
+
+<!-- ─── ENTRETIEN ─── -->
+<section id="entretien" class="location">
+  <div class="conteneur">
+    <div class="entete-sec">
+      <div>
+        <div class="entete-sec__eyebrow">Atelier</div>
+        <h2>Entretien &amp; réparation</h2>
+        <p>Notre atelier de Marcory Zone 4 prend en charge votre machine, qu'elle vienne de chez nous ou non.</p>
+      </div>
+      <a href="#contact" class="lien-fleche">Prendre rendez-vous →</a>
+    </div>
+    <div class="services">
+      <div class="service">
+        <div class="service__num">01</div>
+        <h3>Révision complète</h3>
+        <p>Le passage obligé tous les 3 000 km pour garder une machine fiable.</p>
+        <ul><li>Vidange et filtres</li><li>Réglage chaîne et freins</li><li>Contrôle électrique</li><li>Diagnostic 20 points</li></ul>
+      </div>
+      <div class="service">
+        <div class="service__num">02</div>
+        <h3>Réparation mécanique</h3>
+        <p>Panne, casse, accrochage : on établit un devis avant toute intervention.</p>
+        <ul><li>Moteur et transmission</li><li>Suspension et direction</li><li>Circuit électrique</li><li>Pièces d'origine</li></ul>
+      </div>
+      <div class="service">
+        <div class="service__num">03</div>
+        <h3>Batterie électrique</h3>
+        <p>Spécifique aux deux-roues électriques : diagnostic et remplacement.</p>
+        <ul><li>Test de capacité</li><li>Remplacement de cellules</li><li>Contrôleur et chargeur</li><li>Conseils d'autonomie</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TÉMOIGNAGES ─── -->
+<section class="temoignages">
+  <div class="conteneur">
+    <div class="entete-sec" style="justify-content:center;text-align:center">
+      <div>
+        <div class="entete-sec__eyebrow" style="text-align:center">Ils roulent avec nous</div>
+        <h2>Ce que disent nos clients</h2>
+      </div>
+    </div>
+    <div class="temoignages__colonnes" id="colonnesTemoins"></div>
+  </div>
+</section>
+
+<!-- ─── PIED CINÉMATIQUE ─── -->
+<div class="pied-enveloppe" id="piedEnveloppe">
+  <footer class="pied" id="contact">
+    <div class="pied__aurore"></div>
+    <div class="pied__grille"></div>
+    <div class="pied__geant" id="piedGeant">WK MULTI-SERVICES</div>
+
+    <div class="pied__marquee">
+      <div class="annonce__piste">
+        <div class="annonce__groupe">
+          <span>Vente de motos</span><span style="color:var(--orange)">✦</span>
+          <span>Accessoires &amp; pièces</span><span style="color:var(--or)">✦</span>
+          <span>Location moto &amp; voiture</span><span style="color:var(--orange)">✦</span>
+          <span>Entretien &amp; réparation</span><span style="color:var(--or)">✦</span>
+          <span>Marcory Zone 4</span><span style="color:var(--orange)">✦</span>
+        </div>
+        <div class="annonce__groupe" aria-hidden="true">
+          <span>Vente de motos</span><span style="color:var(--orange)">✦</span>
+          <span>Accessoires &amp; pièces</span><span style="color:var(--or)">✦</span>
+          <span>Location moto &amp; voiture</span><span style="color:var(--or)">✦</span>
+          <span>Entretien &amp; réparation</span><span style="color:var(--or)">✦</span>
+          <span>Marcory Zone 4</span><span style="color:var(--orange)">✦</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pied__centre" id="piedCentre">
+      <h2>On en parle&nbsp;?</h2>
+      <div class="pilules" id="piedLiens">
+        <a href="#" class="pilule magnetique" data-wa="Bonjour WK Multi-Services, je vous écris depuis votre site.">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.2-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.9 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 2 1.1 1 2 1.3 2.3 1.4.3.1.4.1.6-.1l.9-1c.2-.2.4-.2.6-.1l2 1c.2.1.4.2.4.3.1.2.1.7-.1 1.4z"/></svg>
+          Écrire sur WhatsApp
+        </a>
+        <a href="tel:+2250701125770" class="pilule magnetique">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+          07 01 12 57 70
+        </a>
+      </div>
+      <div class="pilules pilules--sec">
+        <a href="https://www.facebook.com/profile.php?id=61562305157204" target="_blank" rel="noopener" class="pilule pilule--sec magnetique">Facebook</a>
+        <a href="https://maps.google.com/?q=Marcory+Zone+4+Abidjan" target="_blank" rel="noopener" class="pilule pilule--sec magnetique">Marcory Zone 4, Abidjan</a>
+        <a href="#" class="pilule pilule--sec magnetique">Ouvert 7j/7</a>
+      </div>
+    </div>
+
+    <div class="conteneur pied__bas">
+      <div class="pied__copy">© <span id="annee">2026</span> WK Multi-Services. Tous droits réservés.</div>
+      <div class="pied__signature">
+        <span>Conçu avec</span><span class="coeur">❤</span><span>par</span><b>DO Communication</b>
+      </div>
+      <button class="haut magnetique" id="retourHaut" aria-label="Retour en haut">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 10l7-7 7 7M12 3v18"/></svg>
+      </button>
+    </div>
+  </footer>
+</div>
+
+<!-- ─── PANIER ─── -->
+<div class="voile" id="voile"></div>
+<aside class="tiroir" id="tiroir" aria-label="Panier">
+  <div class="tiroir__haut">
+    <h2>Votre commande</h2>
+    <button class="fermer" id="fermerPanier" aria-label="Fermer">✕</button>
+  </div>
+  <div class="tiroir__corps" id="corpsPanier"></div>
+  <div class="tiroir__bas" id="basPanier" hidden>
+    <div class="total"><span>Total estimé</span><b id="totalPanier">0 F</b></div>
+    <div class="champs">
+      <input type="text" id="cliNom" placeholder="Votre nom" autocomplete="name">
+      <input type="tel" id="cliTel" placeholder="Votre numéro de téléphone" autocomplete="tel">
+      <input type="text" id="cliCommune" placeholder="Commune de livraison (ex. Marcory)">
+      <textarea id="cliNote" rows="2" placeholder="Précision (facultatif)"></textarea>
+    </div>
+    <button class="btn btn--wa btn--plein" id="envoyerWA">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="19" height="19"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.2-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.9 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 2 1.1 1 2 1.3 2.3 1.4.3.1.4.1.6-.1l.9-1c.2-.2.4-.2.6-.1l2 1c.2.1.4.2.4.3.1.2.1.7-.1 1.4z"/></svg>
+      Envoyer la commande
+    </button>
+    <p class="note-tiroir">Vous serez redirigé vers WhatsApp avec le récapitulatif prérempli. Le paiement se règle directement avec le vendeur.</p>
+  </div>
+</aside>
+
+<a href="#" class="wa-flottant" id="waFlottant" aria-label="Contacter sur WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.2-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.9 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 2 1.1 1 2 1.3 2.3 1.4.3.1.4.1.6-.1l.9-1c.2-.2.4-.2.6-.1l2 1c.2.1.4.2.4.3.1.2.1.7-.1 1.4z"/></svg>
+</a>
+
+<div class="toast" id="toast"></div>
+
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>

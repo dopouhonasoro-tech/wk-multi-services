@@ -1,0 +1,10 @@
+# Sources de travail : rushes vidéo, images de référence, captures de sites tiers.
+# Non nécessaires au déploiement et non redistribuables.
+refs/
+
+# Divers
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
+.netlify/
