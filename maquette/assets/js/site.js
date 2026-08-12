@@ -32,19 +32,30 @@ function pixel(evt, params) {
 }
 
 /* ═════════════════════════════════════════════════════════════════
-   2. CATALOGUE  ⚠️  DONNÉES PROVISOIRES
+   2. CATALOGUE
    ─────────────────────────────────────────────────────────────────
-   Tout ce bloc est à remplacer par le catalogue réel du client
-   (celui de son catalogue WhatsApp). Pour chaque article :
+   Deux sources possibles :
+
+   1. DÉMONSTRATION (ci-dessous, codée en dur) — s'affiche tant que
+      Supabase n'est pas configuré dans config.js, ou le temps que le
+      catalogue en direct se charge.
+
+   2. EN DIRECT — dès que SUPABASE_URL et SUPABASE_ANON_KEY sont
+      renseignés dans config.js, le site va chercher les produits
+      ajoutés par le client depuis /admin.html et remplace le
+      catalogue de démonstration dès qu'ils arrivent (silencieusement,
+      sans rechargement de page). Voir chargerCatalogueLive() plus bas.
+
+   Pour chaque article :
      id     : identifiant unique, libre
      nom    : nom affiché
      cat    : texte de la petite étiquette dorée
      desc   : une phrase courte
      prix   : nombre en FCFA (0 = "sur devis")
-     img    : chemin de la photo dans assets/img/
+     img    : chemin de la photo
      badge  : étiquette orange facultative
    ═══════════════════════════════════════════════════════════════ */
-const MOTOS = [
+const MOTOS_DEMO = [
   { id:"m1", nom:"Dirt bike électrique 72V",  cat:"Électrique",   desc:"Tout-terrain silencieuse, autonomie 80 km, charge 4 h.", prix:1250000, img:"assets/img/p-moto-1.webp", badge:"Vedette" },
   { id:"m2", nom:"Scooter urbain 125 cm³",    cat:"Thermique",    desc:"Souple en ville, coffre sous selle, faible consommation.", prix:675000,  img:"assets/img/p-moto-2.webp" },
   { id:"m3", nom:"Moto utilitaire 150 cm³",   cat:"Thermique",    desc:"Porte-bagages renforcé, pensée pour la livraison.",       prix:890000,  img:"assets/img/p-moto-3.webp" },
@@ -55,7 +66,7 @@ const MOTOS = [
   { id:"m8", nom:"Mobylette 100 cm³",         cat:"Thermique",    desc:"Le premier deux-roues : simple, robuste, économe.",       prix:480000,  img:"assets/img/p-moto-8.webp" }
 ];
 
-const ACCESSOIRES = [
+const ACCESSOIRES_DEMO = [
   { id:"a1", nom:"Casque intégral",          cat:"Protection", desc:"Coque ABS, visière anti-rayures, homologué.",        prix:45000, img:"assets/img/p-acc-1.webp", badge:"Best-seller" },
   { id:"a2", nom:"Casque jet",               cat:"Protection", desc:"Léger et aéré, idéal trajets urbains courts.",       prix:28000, img:"assets/img/p-acc-2.webp" },
   { id:"a3", nom:"Gants renforcés",          cat:"Protection", desc:"Coques aux articulations, paume antidérapante.",     prix:15000, img:"assets/img/p-acc-3.webp" },
@@ -126,11 +137,24 @@ function carteProduit(p) {
   </article>`;
 }
 
-/* Rendu des grilles */
+/* Rendu des grilles — MOTOS/ACCESSOIRES/TOUS sont réaffectables : le
+   catalogue en direct (chargerCatalogueLive, plus bas) les remplace
+   après le premier rendu si Supabase est configuré. */
 const grilleMotos = $("#grilleMotos");
 const grilleAcc   = $("#grilleAccessoires");
-if (grilleMotos) grilleMotos.innerHTML = MOTOS.map(carteProduit).join("");
-if (grilleAcc)   grilleAcc.innerHTML   = ACCESSOIRES.map(carteProduit).join("");
+let MOTOS = MOTOS_DEMO;
+let ACCESSOIRES = ACCESSOIRES_DEMO;
+let TOUS = [...MOTOS, ...ACCESSOIRES];
+
+function rendreProduits(majPanier) {
+  TOUS = [...MOTOS, ...ACCESSOIRES];
+  if (grilleMotos) grilleMotos.innerHTML = MOTOS.map(carteProduit).join("");
+  if (grilleAcc)   grilleAcc.innerHTML   = ACCESSOIRES.map(carteProduit).join("");
+  // Ce premier appel a lieu avant que `panier` (section 4, plus bas) existe :
+  // rendrePanier() n'est déclenché que sur les appels suivants (catalogue en direct).
+  if (majPanier !== false) rendrePanier();
+}
+rendreProduits(false);
 
 const grilleCat = $("#grilleCategories");
 if (grilleCat) {
@@ -171,7 +195,6 @@ if (colTem) {
 }
 
 /* ───────────────────────── 4. PANIER ───────────────────────────── */
-const TOUS = [...MOTOS, ...ACCESSOIRES];
 const CLE  = "wk_panier";
 let panier = [];
 
@@ -437,7 +460,44 @@ if (grilleMotos && "IntersectionObserver" in window) {
   }
 })();
 
-/* ────────────────────── 8. DIVERS ─────────────────────────────── */
+/* ──────────────── 8. CATALOGUE EN DIRECT (SUPABASE) ──────────────
+   Interroge la table `produits` en lecture seule (clé publique, RLS
+   limitée aux produits actifs — voir supabase/schema.sql). Si Supabase
+   n'est pas configuré, ou si la requête échoue, ou si le client n'a
+   encore ajouté aucun produit dans une catégorie, le catalogue de
+   démonstration de cette catégorie reste affiché : jamais de section
+   vide à cause d'un souci réseau.
+   ──────────────────────────────────────────────────────────────── */
+async function chargerCatalogueLive() {
+  if (!CFG.SUPABASE_URL || !CFG.SUPABASE_ANON_KEY) return;
+
+  try {
+    const r = await fetch(
+      CFG.SUPABASE_URL + "/rest/v1/produits?select=*&actif=eq.true&order=ordre.asc",
+      { headers: { apikey: CFG.SUPABASE_ANON_KEY, Authorization: "Bearer " + CFG.SUPABASE_ANON_KEY } }
+    );
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    const lignes = await r.json();
+    if (!Array.isArray(lignes)) throw new Error("réponse inattendue");
+
+    const normalise = l => ({
+      id: l.id, nom: l.nom, cat: l.caracteristique || "",
+      desc: l.description || "", prix: l.prix || 0,
+      img: l.image_url || "", badge: l.badge || null
+    });
+    const motosLive = lignes.filter(l => l.categorie === "moto").map(normalise);
+    const accLive   = lignes.filter(l => l.categorie === "accessoire").map(normalise);
+
+    let changement = false;
+    if (motosLive.length) { MOTOS = motosLive; changement = true; }
+    if (accLive.length)   { ACCESSOIRES = accLive; changement = true; }
+    if (changement) rendreProduits();
+  } catch (e) {
+    console.warn("[WK] Catalogue en direct indisponible, catalogue de démonstration conservé.", e);
+  }
+}
+
+/* ────────────────────── 9. DIVERS ─────────────────────────────── */
 const an = $("#annee"); if (an) an.textContent = new Date().getFullYear();
 
 const haut = $("#retourHaut");
@@ -460,4 +520,5 @@ if (burger) {
 }
 
 rendrePanier();
+chargerCatalogueLive();
 })();

@@ -18,19 +18,8 @@
 <link rel="preload" as="image" href="assets/img/hero-poster-sm.webp" media="(max-width:800px)" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<!-- ═══════════════════════════════════════════════════════════════════
-     ⚙️  CONFIGURATION — LES 2 SEULES LIGNES À MODIFIER AVANT MISE EN LIGNE
-     ═══════════════════════════════════════════════════════════════════ -->
-<script>
-window.WK_CONFIG = {
-  // Numéro WhatsApp Business, format international sans + ni espaces.
-  WHATSAPP_NUMBER: "2250701125770",
-
-  // ⚠️ REMPLACER PAR L'ID DU PIXEL META (15-16 chiffres).
-  // Tant que la valeur reste "PIXEL_ID", le pixel ne se charge pas.
-  PIXEL_ID: "PIXEL_ID"
-};
-</script>
+<!-- Config partagée avec admin.html — voir assets/js/config.js -->
+<script src="assets/js/config.js"></script>
 
 <style>
 /* ─────────────────────────────  BASE  ───────────────────────────── */
@@ -634,7 +623,7 @@ section{padding:76px 0}
     </div>
 
     <div class="conteneur pied__bas">
-      <div class="pied__copy">© <span id="annee">2026</span> WK Multi-Services. Tous droits réservés.</div>
+      <div class="pied__copy">© <span id="annee">2026</span> WK Multi-Services. Tous droits réservés. · <a href="admin.html" style="color:inherit;text-decoration:underline">Espace produits</a></div>
       <div class="pied__signature">
         <span>Conçu avec</span><span class="coeur">❤</span><span>par</span><b>DO Communication</b>
       </div>

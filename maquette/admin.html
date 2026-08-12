@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Espace produits — WK Multi-Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="assets/js/config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+
+<style>
+:root{
+  --noir:#0A0A0B; --noir-2:#131316; --noir-3:#1C1C21;
+  --orange:#E85D04; --orange-clair:#FB8B24; --or:#C9A227;
+  --creme:#F6F2EA; --gris:#9A9AA3; --bord:rgba(255,255,255,.10);
+  --rouge:#E1373F; --vert:#22B455;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--noir);color:var(--creme);font-family:"Plus Jakarta Sans",system-ui,sans-serif;
+  font-size:15px;line-height:1.55;min-height:100vh}
+h1,h2,.display{font-family:Anton,Impact,sans-serif;font-weight:400;letter-spacing:.01em;text-transform:uppercase}
+a{color:var(--orange)}
+button{font:inherit;color:inherit;cursor:pointer}
+input,select,textarea{font:inherit;color:var(--creme);background:rgba(0,0,0,.4);
+  border:1px solid var(--bord);border-radius:10px;padding:11px 13px;width:100%}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--orange)}
+label{display:block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gris);margin-bottom:6px}
+.champ{margin-bottom:14px}
+.grille2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border:none;border-radius:100px;
+  font-size:13.5px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;transition:transform .15s,background .2s}
+.btn:active{transform:translateY(1px)}
+.btn--orange{background:var(--orange);color:#fff}
+.btn--orange:hover{background:var(--orange-clair)}
+.btn--fantome{background:transparent;border:1px solid var(--bord);color:var(--creme)}
+.btn--fantome:hover{border-color:var(--creme)}
+.btn--rouge{background:transparent;border:1px solid rgba(225,55,63,.4);color:var(--rouge)}
+.btn--rouge:hover{background:rgba(225,55,63,.12)}
+.btn[disabled]{opacity:.5;pointer-events:none}
+
+/* écran de connexion */
+#ecranConnexion{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.carte-connexion{width:100%;max-width:380px;border:1px solid var(--bord);border-radius:18px;background:var(--noir-2);padding:32px 28px}
+.carte-connexion h1{font-size:26px;margin-bottom:6px}
+.carte-connexion p{color:var(--gris);font-size:13.5px;margin-bottom:22px}
+.erreur{color:var(--rouge);font-size:13px;margin-top:10px;min-height:18px}
+
+/* config manquante */
+#etatConfig{max-width:520px;margin:15vh auto;padding:0 20px;text-align:center}
+#etatConfig h1{font-size:24px;margin-bottom:12px}
+#etatConfig p{color:var(--gris);font-size:14px}
+#etatConfig code{background:var(--noir-3);padding:2px 7px;border-radius:5px;font-size:13px}
+
+/* tableau de bord */
+#tableauBord{display:none}
+.entete-admin{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:16px;
+  padding:16px 24px;border-bottom:1px solid var(--bord);background:rgba(10,10,11,.9);backdrop-filter:blur(10px)}
+.entete-admin h1{font-size:19px;flex:1}
+.entete-admin span{font-size:12.5px;color:var(--gris)}
+.conteneur-admin{max-width:1040px;margin:0 auto;padding:28px 24px 80px;display:grid;grid-template-columns:360px 1fr;gap:28px}
+@media(max-width:820px){.conteneur-admin{grid-template-columns:1fr}}
+
+.panneau{border:1px solid var(--bord);border-radius:16px;background:var(--noir-2);padding:22px}
+.panneau h2{font-size:18px;margin-bottom:16px}
+
+.zone-image{border:1.5px dashed var(--bord);border-radius:12px;padding:14px;text-align:center;margin-bottom:14px}
+.zone-image img{max-width:100%;max-height:160px;border-radius:8px;margin-bottom:10px;display:none}
+.zone-image small{display:block;color:var(--gris);font-size:11.5px;margin-top:8px}
+
+.actif-ligne{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.actif-ligne input{width:auto}
+
+.msg{font-size:13px;padding:10px 13px;border-radius:9px;margin-bottom:14px;display:none}
+.msg--ok{background:rgba(34,180,85,.12);color:#5FDB8E;border:1px solid rgba(34,180,85,.3)}
+.msg--err{background:rgba(225,55,63,.12);color:#F58E92;border:1px solid rgba(225,55,63,.3)}
+
+/* liste des produits */
+.filtre{display:flex;gap:8px;margin-bottom:16px}
+.filtre button{padding:8px 16px;border-radius:100px;border:1px solid var(--bord);background:transparent;color:var(--gris);font-size:12.5px;font-weight:700}
+.filtre button.actif{border-color:var(--orange);color:var(--creme);background:rgba(232,93,4,.12)}
+.liste-produits{display:flex;flex-direction:column;gap:10px}
+.carte-p{display:flex;gap:13px;align-items:center;border:1px solid var(--bord);border-radius:12px;padding:11px;background:var(--noir)}
+.carte-p.masque{opacity:.5}
+.carte-p img{width:60px;height:60px;object-fit:cover;border-radius:8px;background:var(--noir-3);flex-shrink:0}
+.carte-p__in{flex:1;min-width:0}
+.carte-p b{display:block;font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.carte-p small{font-size:12px;color:var(--gris)}
+.carte-p__prix{font-family:Anton,sans-serif;font-size:15px;white-space:nowrap}
+.carte-p__actions{display:flex;gap:6px;flex-shrink:0}
+.icone-bouton{width:34px;height:34px;display:grid;place-items:center;border-radius:9px;border:1px solid var(--bord);background:transparent;color:var(--gris)}
+.icone-bouton:hover{color:var(--creme);border-color:var(--creme)}
+.icone-bouton svg{width:16px;height:16px}
+.vide{color:var(--gris);font-size:13.5px;text-align:center;padding:30px 0}
+</style>
+</head>
+<body>
+
+<!-- Supabase non configuré -->
+<div id="etatConfig" hidden>
+  <h1>Espace produits pas encore activé</h1>
+  <p>Renseignez <code>SUPABASE_URL</code> et <code>SUPABASE_ANON_KEY</code> dans
+  <code>assets/js/config.js</code> pour activer cette page. Voir
+  <code>maquette/LISEZ-MOI-ADMIN.md</code>.</p>
+</div>
+
+<!-- Connexion -->
+<div id="ecranConnexion" hidden>
+  <div class="carte-connexion">
+    <h1>WK Multi-Services</h1>
+    <p>Espace produits — réservé au gérant.</p>
+    <form id="formConnexion">
+      <div class="champ">
+        <label for="ceEmail">Adresse e-mail</label>
+        <input type="email" id="ceEmail" required autocomplete="username">
+      </div>
+      <div class="champ">
+        <label for="ceMdp">Mot de passe</label>
+        <input type="password" id="ceMdp" required autocomplete="current-password">
+      </div>
+      <button type="submit" class="btn btn--orange" style="width:100%">Se connecter</button>
+      <div class="erreur" id="erreurConnexion"></div>
+    </form>
+  </div>
+</div>
+
+<!-- Tableau de bord -->
+<div id="tableauBord">
+  <header class="entete-admin">
+    <h1>Espace produits</h1>
+    <span id="emailConnecte"></span>
+    <button class="btn btn--fantome" id="btnDeconnexion">Déconnexion</button>
+  </header>
+
+  <div class="conteneur-admin">
+
+    <section class="panneau">
+      <h2 id="titreFormulaire">Ajouter un produit</h2>
+      <div class="msg msg--ok" id="msgOk"></div>
+      <div class="msg msg--err" id="msgErr"></div>
+
+      <form id="formProduit">
+        <input type="hidden" id="pId">
+
+        <div class="champ">
+          <label>Photo</label>
+          <div class="zone-image">
+            <img id="apercuImage" alt="Aperçu">
+            <input type="file" id="pFichier" accept="image/*">
+            <small>La photo est automatiquement redimensionnée avant l'envoi.</small>
+          </div>
+        </div>
+
+        <div class="champ">
+          <label for="pCategorie">Catégorie</label>
+          <select id="pCategorie" required>
+            <option value="moto">Moto</option>
+            <option value="accessoire">Accessoire</option>
+          </select>
+        </div>
+
+        <div class="champ">
+          <label for="pNom">Nom du produit</label>
+          <input type="text" id="pNom" required placeholder="Ex. Dirt bike électrique 72V">
+        </div>
+
+        <div class="grille2">
+          <div class="champ">
+            <label for="pCarac">Caractéristique</label>
+            <input type="text" id="pCarac" placeholder="Ex. Électrique">
+          </div>
+          <div class="champ">
+            <label for="pBadge">Étiquette (facultatif)</label>
+            <input type="text" id="pBadge" placeholder="Ex. Vedette">
+          </div>
+        </div>
+
+        <div class="champ">
+          <label for="pDesc">Description courte</label>
+          <textarea id="pDesc" rows="2" placeholder="Une phrase qui donne envie."></textarea>
+        </div>
+
+        <div class="grille2">
+          <div class="champ">
+            <label for="pPrix">Prix (FCFA)</label>
+            <input type="number" id="pPrix" min="0" step="1000" placeholder="Vide = sur devis">
+          </div>
+          <div class="champ">
+            <label for="pOrdre">Ordre d'affichage</label>
+            <input type="number" id="pOrdre" min="0" step="1" value="0">
+          </div>
+        </div>
+
+        <div class="actif-ligne">
+          <input type="checkbox" id="pActif" checked>
+          <label for="pActif" style="margin:0">Visible sur le site</label>
+        </div>
+
+        <button type="submit" class="btn btn--orange" id="btnEnregistrer" style="width:100%">Enregistrer</button>
+        <button type="button" class="btn btn--fantome" id="btnAnnuler" style="width:100%;margin-top:8px" hidden>Annuler la modification</button>
+      </form>
+    </section>
+
+    <section class="panneau">
+      <h2>Produits</h2>
+      <div class="filtre">
+        <button data-filtre="tous" class="actif">Tous</button>
+        <button data-filtre="moto">Motos</button>
+        <button data-filtre="accessoire">Accessoires</button>
+      </div>
+      <div class="liste-produits" id="listeProduits">
+        <div class="vide">Chargement…</div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="assets/js/admin.js" defer></script>
+</body>
+</html>
