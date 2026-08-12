@@ -56,25 +56,25 @@ function pixel(evt, params) {
      badge  : étiquette orange facultative
    ═══════════════════════════════════════════════════════════════ */
 const MOTOS_DEMO = [
-  { id:"m1", nom:"Dirt bike électrique 72V",  cat:"Électrique",   desc:"Tout-terrain silencieuse, autonomie 80 km, charge 4 h.", prix:1250000, img:"assets/img/p-moto-1.webp", badge:"Vedette" },
-  { id:"m2", nom:"Scooter urbain 125 cm³",    cat:"Thermique",    desc:"Souple en ville, coffre sous selle, faible consommation.", prix:675000,  img:"assets/img/p-moto-2.webp" },
-  { id:"m3", nom:"Moto utilitaire 150 cm³",   cat:"Thermique",    desc:"Porte-bagages renforcé, pensée pour la livraison.",       prix:890000,  img:"assets/img/p-moto-3.webp" },
-  { id:"m4", nom:"Moto sport 200 cm³",        cat:"Thermique",    desc:"Position dynamique, freins à disque avant et arrière.",   prix:1450000, img:"assets/img/p-moto-4.webp" },
-  { id:"m5", nom:"Scooter électrique 60V",    cat:"Électrique",   desc:"Zéro carburant, batterie amovible, recharge à la maison.", prix:850000,  img:"assets/img/p-moto-5.webp", badge:"Économique" },
-  { id:"m6", nom:"Tricycle porteur 200 cm³",  cat:"Utilitaire",   desc:"Benne basculante, jusqu'à 500 kg de charge utile.",       prix:1750000, img:"assets/img/p-moto-6.webp" },
-  { id:"m7", nom:"Tout-terrain 250 cm³",      cat:"Thermique",    desc:"Suspensions longue course pour pistes et hors-piste.",    prix:1980000, img:"assets/img/p-moto-7.webp" },
-  { id:"m8", nom:"Mobylette 100 cm³",         cat:"Thermique",    desc:"Le premier deux-roues : simple, robuste, économe.",       prix:480000,  img:"assets/img/p-moto-8.webp" }
+  { id:"m1", nom:"Dirt bike électrique 72V",  cat:"Électrique",   desc:"Tout-terrain silencieuse, autonomie 80 km, charge 4 h.", prix:1250000, img:"", badge:"Vedette" },
+  { id:"m2", nom:"Scooter urbain 125 cm³",    cat:"Thermique",    desc:"Souple en ville, coffre sous selle, faible consommation.", prix:675000,  img:"" },
+  { id:"m3", nom:"Moto utilitaire 150 cm³",   cat:"Thermique",    desc:"Porte-bagages renforcé, pensée pour la livraison.",       prix:890000,  img:"" },
+  { id:"m4", nom:"Moto sport 200 cm³",        cat:"Thermique",    desc:"Position dynamique, freins à disque avant et arrière.",   prix:1450000, img:"" },
+  { id:"m5", nom:"Scooter électrique 60V",    cat:"Électrique",   desc:"Zéro carburant, batterie amovible, recharge à la maison.", prix:850000,  img:"", badge:"Économique" },
+  { id:"m6", nom:"Tricycle porteur 200 cm³",  cat:"Utilitaire",   desc:"Benne basculante, jusqu'à 500 kg de charge utile.",       prix:1750000, img:"" },
+  { id:"m7", nom:"Tout-terrain 250 cm³",      cat:"Thermique",    desc:"Suspensions longue course pour pistes et hors-piste.",    prix:1980000, img:"" },
+  { id:"m8", nom:"Mobylette 100 cm³",         cat:"Thermique",    desc:"Le premier deux-roues : simple, robuste, économe.",       prix:480000,  img:"" }
 ];
 
 const ACCESSOIRES_DEMO = [
-  { id:"a1", nom:"Casque intégral",          cat:"Protection", desc:"Coque ABS, visière anti-rayures, homologué.",        prix:45000, img:"assets/img/p-acc-1.webp", badge:"Best-seller" },
-  { id:"a2", nom:"Casque jet",               cat:"Protection", desc:"Léger et aéré, idéal trajets urbains courts.",       prix:28000, img:"assets/img/p-acc-2.webp" },
-  { id:"a3", nom:"Gants renforcés",          cat:"Protection", desc:"Coques aux articulations, paume antidérapante.",     prix:15000, img:"assets/img/p-acc-3.webp" },
-  { id:"a4", nom:"Blouson de protection",    cat:"Protection", desc:"Coudières et dorsale amovibles, doublure aérée.",     prix:65000, img:"assets/img/p-acc-4.webp" },
-  { id:"a5", nom:"Antivol en U",             cat:"Sécurité",   desc:"Acier trempé, deux clés, support de fixation.",      prix:22000, img:"assets/img/p-acc-5.webp" },
-  { id:"a6", nom:"Top-case 45 L",            cat:"Bagagerie",  desc:"Verrouillable, contient deux casques intégraux.",    prix:38000, img:"assets/img/p-acc-6.webp" },
-  { id:"a7", nom:"Kit chaîne complet",       cat:"Pièces",     desc:"Chaîne + couronne + pignon, montage possible.",      prix:32000, img:"assets/img/p-acc-7.webp" },
-  { id:"a8", nom:"Huile moteur 4T · 1 L",    cat:"Entretien",  desc:"Semi-synthèse, adaptée au climat tropical.",         prix:8500,  img:"assets/img/p-acc-8.webp" }
+  { id:"a1", nom:"Casque intégral",          cat:"Protection", desc:"Coque ABS, visière anti-rayures, homologué.",        prix:45000, img:"", badge:"Best-seller" },
+  { id:"a2", nom:"Casque jet",               cat:"Protection", desc:"Léger et aéré, idéal trajets urbains courts.",       prix:28000, img:"" },
+  { id:"a3", nom:"Gants renforcés",          cat:"Protection", desc:"Coques aux articulations, paume antidérapante.",     prix:15000, img:"" },
+  { id:"a4", nom:"Blouson de protection",    cat:"Protection", desc:"Coudières et dorsale amovibles, doublure aérée.",     prix:65000, img:"" },
+  { id:"a5", nom:"Antivol en U",             cat:"Sécurité",   desc:"Acier trempé, deux clés, support de fixation.",      prix:22000, img:"" },
+  { id:"a6", nom:"Top-case 45 L",            cat:"Bagagerie",  desc:"Verrouillable, contient deux casques intégraux.",    prix:38000, img:"" },
+  { id:"a7", nom:"Kit chaîne complet",       cat:"Pièces",     desc:"Chaîne + couronne + pignon, montage possible.",      prix:32000, img:"" },
+  { id:"a8", nom:"Huile moteur 4T · 1 L",    cat:"Entretien",  desc:"Semi-synthèse, adaptée au climat tropical.",         prix:8500,  img:"" }
 ];
 
 const CATEGORIES = [
@@ -109,6 +109,10 @@ const prixFR = n => n > 0
 /** Image avec repli élégant si le fichier n'existe pas encore.
  *  `sm` : sert une version allégée en dessous de 800 px (fichier « …-sm.webp »). */
 function imgHTML(src, alt, sm) {
+  // Pas de photo renseignée : on n'émet aucune balise <img>, sinon le
+  // navigateur ferait une requête 404 par fiche. Le conteneur porte
+  // directement l'état « sans-img » (voir carteProduit).
+  if (!src) return "";
   const balise = `<img src="${src}" alt="${alt}" loading="lazy" decoding="async" width="400" height="300"
     onerror="this.style.display='none';(this.closest('.produit__img')||this.closest('.categorie')||this.parentElement).classList.add('sans-img')">`;
   if (!sm) return balise;
@@ -119,7 +123,7 @@ function imgHTML(src, alt, sm) {
 function carteProduit(p) {
   return `
   <article class="produit" data-id="${p.id}">
-    <div class="produit__img">
+    <div class="produit__img${p.img ? "" : " sans-img"}">
       ${p.badge ? `<span class="produit__badge">${p.badge}</span>` : ""}
       ${imgHTML(p.img, p.nom)}
     </div>
@@ -236,7 +240,7 @@ function rendrePanier() {
     const p = trouver(l.id);
     if (!p) return "";
     return `<div class="ligne">
-      ${imgHTML(p.img, p.nom)}
+      ${p.img ? imgHTML(p.img, p.nom) : `<span class="ligne__vignette" aria-hidden="true">${p.nom.charAt(0)}</span>`}
       <div class="ligne__in">
         <b>${p.nom}</b>
         <small>${prixFR(p.prix)}</small>
