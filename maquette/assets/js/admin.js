@@ -12,7 +12,32 @@ if (!CFG.SUPABASE_URL || !CFG.SUPABASE_ANON_KEY) {
   return;
 }
 
-const sb = window.supabase.createClient(CFG.SUPABASE_URL, CFG.SUPABASE_ANON_KEY);
+/* La bibliothèque Supabase est chargée depuis une CDN externe (voir
+   admin.html). Sur une connexion instable, ce chargement peut échouer
+   silencieusement — sans ce garde-fou, tout le reste du script (dont
+   l'écouteur du formulaire de connexion) ne s'exécute jamais, et le
+   clic sur « Se connecter » ne fait alors strictement rien. */
+if (!window.supabase || typeof window.supabase.createClient !== "function") {
+  const c = $("#ecranConnexion .carte-connexion");
+  if (c) c.insertAdjacentHTML("beforeend",
+    `<div class="erreur" style="margin-top:14px">
+      La page n'a pas pu charger correctement (bibliothèque manquante).
+      Vérifiez votre connexion et rechargez la page.
+     </div>`);
+  $("#ecranConnexion").hidden = false;
+  return;
+}
+
+let sb;
+try {
+  sb = window.supabase.createClient(CFG.SUPABASE_URL, CFG.SUPABASE_ANON_KEY);
+} catch (e) {
+  const c = $("#ecranConnexion .carte-connexion");
+  if (c) c.insertAdjacentHTML("beforeend",
+    `<div class="erreur" style="margin-top:14px">Erreur de connexion au serveur : ${e.message}</div>`);
+  $("#ecranConnexion").hidden = false;
+  return;
+}
 
 /* ───────────────────────── Connexion ───────────────────────────── */
 const ecranConnexion = $("#ecranConnexion");
@@ -38,9 +63,21 @@ $("#formConnexion").addEventListener("submit", async e => {
   const email = $("#ceEmail").value.trim();
   const mdp   = $("#ceMdp").value;
   const erreur = $("#erreurConnexion");
+  const btn = e.submitter || $("#formConnexion button[type=submit]");
   erreur.textContent = "";
-  const { error } = await sb.auth.signInWithPassword({ email, password: mdp });
-  if (error) erreur.textContent = "Identifiants incorrects, ou compte pas encore créé (voir LISEZ-MOI-ADMIN.md).";
+  if (btn) { btn.disabled = true; btn.textContent = "Connexion…"; }
+
+  // Si signInWithPassword échoue au niveau réseau (plutôt que de renvoyer
+  // proprement { error }), l'ancienne version ne montrait rien du tout :
+  // ce try/catch garantit qu'un message apparaît dans tous les cas.
+  try {
+    const { error } = await sb.auth.signInWithPassword({ email, password: mdp });
+    if (error) erreur.textContent = "Identifiants incorrects, ou compte pas encore créé (voir LISEZ-MOI-ADMIN.md).";
+  } catch (err) {
+    erreur.textContent = "Connexion au serveur impossible : " + (err.message || "réseau indisponible") + ". Réessayez.";
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = "Se connecter"; }
+  }
 });
 
 $("#btnDeconnexion").addEventListener("click", () => sb.auth.signOut());
