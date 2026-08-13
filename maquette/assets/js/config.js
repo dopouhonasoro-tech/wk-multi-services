@@ -10,12 +10,10 @@ window.WK_CONFIG = {
   // Tant que la valeur reste "PIXEL_ID", le pixel ne se charge pas.
   PIXEL_ID: "PIXEL_ID",
 
-  // Catalogue en direct — projet Supabase « WK MULTISERVICES ».
-  // ⚠️ Ici ne doit figurer QUE la clé publique (« publishable » / « anon »).
-  // Elle est visible par tous les visiteurs, c'est normal et sans risque :
-  // les règles de sécurité de la base (supabase/schema.sql) ne l'autorisent
-  // qu'à lire les produits actifs. La clé secrète (sb_secret_…) ne doit
-  // JAMAIS être placée dans ce fichier ni dans aucun fichier du site.
-  SUPABASE_URL: "https://ldntmvxgdmkexitytjwq.supabase.co",
-  SUPABASE_ANON_KEY: "sb_publishable_Ny8vwQBZq-V_cPWz3P3u0A_5sWsw9pt"
+  // Catalogue en direct (facultatif). Vide = le site utilise le catalogue
+  // codé en dur dans site.js. Pour réactiver l'espace admin plus tard,
+  // remettre l'URL du projet Supabase et sa clé publique (voir
+  // maquette/LISEZ-MOI-ADMIN.md). Jamais la clé secrète.
+  SUPABASE_URL: "",
+  SUPABASE_ANON_KEY: ""
 };
