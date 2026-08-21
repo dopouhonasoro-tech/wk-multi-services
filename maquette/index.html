@@ -172,6 +172,24 @@ section{padding:76px 0}
 .loc-form input:focus,.loc-form select:focus{outline:none;border-color:var(--orange)}
 .loc-form input::-webkit-calendar-picker-indicator{filter:invert(.75)}
 
+/* ───────────────────  ACCESSOIRES (appel à contact)  ────────────── */
+.acc-bloc{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--bord);border-radius:var(--rayon);overflow:hidden;background:var(--noir-2)}
+.acc-bloc picture{display:block;height:100%}
+.acc-bloc img{width:100%;height:100%;object-fit:cover;min-height:300px}
+.acc-bloc__in{padding:34px 32px;display:flex;flex-direction:column;justify-content:center}
+.acc-bloc__in h3{font-size:clamp(22px,3vw,30px);margin-bottom:10px}
+.acc-bloc__in p{color:var(--gris);font-size:14.5px;max-width:44ch}
+.acc-liste{list-style:none;margin:18px 0 24px;display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.acc-liste li{font-size:13.5px;color:#C6C2BA;padding-left:19px;position:relative}
+.acc-liste li::before{content:"";position:absolute;left:0;top:7px;width:7px;height:7px;border-radius:50%;background:var(--orange)}
+.acc-bloc .btn{align-self:flex-start}
+@media(max-width:860px){
+  .acc-bloc{grid-template-columns:1fr}
+  .acc-bloc img{min-height:220px}
+  .acc-bloc__in{padding:26px 22px}
+  .acc-liste{grid-template-columns:1fr}
+}
+
 /* ─────────────────────────────  ENTRETIEN  ─────────────────────── */
 .services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .service{border:1px solid var(--bord);border-radius:var(--rayon);padding:26px;background:var(--noir-2);transition:border-color .25s}
@@ -281,6 +299,7 @@ section{padding:76px 0}
 .champs input,.champs textarea{padding:12px 13px;border-radius:10px;border:1px solid var(--bord);background:rgba(0,0,0,.4);color:var(--creme);font-size:13.5px;font-family:inherit;resize:vertical}
 .champs input:focus,.champs textarea:focus{outline:none;border-color:var(--orange)}
 .note-tiroir{font-size:11.5px;color:var(--gris);text-align:center}
+.note-devis{font-size:11.5px;color:var(--or);margin-top:-6px}
 
 /* bouton WhatsApp flottant */
 .wa-flottant{position:fixed;right:18px;bottom:18px;z-index:80;display:grid;place-items:center;width:56px;height:56px;border-radius:50%;
@@ -337,7 +356,7 @@ section{padding:76px 0}
 <body>
 
 <div class="avis-maquette conteneur-plein">
-  <div class="conteneur"><b>Maquette de démonstration</b> — le catalogue, les prix et les avis sont provisoires et doivent être remplacés par les données réelles du client.</div>
+  <div class="conteneur"><b>À finaliser avant la campagne</b> — les motos et les prix sont réels ; les avis clients affichés plus bas sont encore fictifs et doivent être remplacés ou retirés.</div>
 </div>
 
 <!-- ─── BANDEAU DÉFILANT ─── -->
@@ -441,8 +460,8 @@ section{padding:76px 0}
     <div class="entete-sec">
       <div>
         <div class="entete-sec__eyebrow">Vente</div>
-        <h2>Nos motos</h2>
-        <p>Thermiques et électriques, du deux-roues urbain à la tout-terrain. Chaque machine est révisée et livrée prête à rouler.</p>
+        <h2>Nos motos disponibles</h2>
+        <p>Des Yamaha sélectionnées une par une : roadsters MT-07, trail Ténéré 700 et scooter urbain. Papiers en règle, prix négociables.</p>
       </div>
       <a href="#contact" class="lien-fleche">Un modèle précis ? →</a>
     </div>
@@ -525,10 +544,30 @@ section{padding:76px 0}
       <div>
         <div class="entete-sec__eyebrow">Équipement</div>
         <h2>Accessoires &amp; pièces</h2>
-        <p>Casques, protections, antivols, pièces d'usure. Ce qu'il faut pour rouler protégé et garder sa machine en forme.</p>
+        <p>Casques, gants, protections, antivols, pièces d'usure. Nous commandons et fournissons l'équipement dont vous avez besoin.</p>
       </div>
     </div>
-    <div class="grille-produits" id="grilleAccessoires"></div>
+
+    <div class="acc-bloc">
+      <picture>
+        <source media="(max-width:800px)" srcset="assets/img/c-accessoires-sm.webp">
+        <img src="assets/img/c-accessoires.webp" alt="Casque, gants et antivol moto" loading="lazy" decoding="async" width="1200" height="896">
+      </picture>
+      <div class="acc-bloc__in">
+        <h3>Dites-nous ce que vous cherchez</h3>
+        <p>Envoyez-nous la marque, la taille ou la référence : nous vous répondons avec la disponibilité et le prix.</p>
+        <ul class="acc-liste">
+          <li>Casques intégraux et jets</li>
+          <li>Gants et blousons de protection</li>
+          <li>Antivols et top-cases</li>
+          <li>Pièces d'usure et huiles</li>
+        </ul>
+        <a href="#" class="btn btn--wa" data-wa="Bonjour WK Multi-Services, je recherche un accessoire : ">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="19" height="19"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.2-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.9 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 2 1.1 1 2 1.3 2.3 1.4.3.1.4.1.6-.1l.9-1c.2-.2.4-.2.6-.1l2 1c.2.1.4.2.4.3.1.2.1.7-.1 1.4z"/></svg>
+          Demander un accessoire
+        </a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -646,6 +685,7 @@ section{padding:76px 0}
   <div class="tiroir__corps" id="corpsPanier"></div>
   <div class="tiroir__bas" id="basPanier" hidden>
     <div class="total"><span>Total estimé</span><b id="totalPanier">0 F</b></div>
+    <p class="note-devis" id="mentionDevis" hidden>Hors article « sur devis » : nous vous communiquons son prix sur WhatsApp.</p>
     <div class="champs">
       <input type="text" id="cliNom" placeholder="Votre nom" autocomplete="name">
       <input type="tel" id="cliTel" placeholder="Votre numéro de téléphone" autocomplete="tel">

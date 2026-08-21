@@ -56,33 +56,43 @@ function pixel(evt, params) {
      badge  : étiquette orange facultative
    ═══════════════════════════════════════════════════════════════ */
 const MOTOS_DEMO = [
-  { id:"m1", nom:"Dirt bike électrique 72V",  cat:"Électrique",   desc:"Tout-terrain silencieuse, autonomie 80 km, charge 4 h.", prix:1250000, img:"", badge:"Vedette" },
-  { id:"m2", nom:"Scooter urbain 125 cm³",    cat:"Thermique",    desc:"Souple en ville, coffre sous selle, faible consommation.", prix:675000,  img:"" },
-  { id:"m3", nom:"Moto utilitaire 150 cm³",   cat:"Thermique",    desc:"Porte-bagages renforcé, pensée pour la livraison.",       prix:890000,  img:"" },
-  { id:"m4", nom:"Moto sport 200 cm³",        cat:"Thermique",    desc:"Position dynamique, freins à disque avant et arrière.",   prix:1450000, img:"" },
-  { id:"m5", nom:"Scooter électrique 60V",    cat:"Électrique",   desc:"Zéro carburant, batterie amovible, recharge à la maison.", prix:850000,  img:"", badge:"Économique" },
-  { id:"m6", nom:"Tricycle porteur 200 cm³",  cat:"Utilitaire",   desc:"Benne basculante, jusqu'à 500 kg de charge utile.",       prix:1750000, img:"" },
-  { id:"m7", nom:"Tout-terrain 250 cm³",      cat:"Thermique",    desc:"Suspensions longue course pour pistes et hors-piste.",    prix:1980000, img:"" },
-  { id:"m8", nom:"Mobylette 100 cm³",         cat:"Thermique",    desc:"Le premier deux-roues : simple, robuste, économe.",       prix:480000,  img:"" }
+  { id:"mt07-2024", nom:"Yamaha MT-07 2024", cat:"Roadster · 2024",
+    desc:"2 cylindres, 6 vitesses, 5 300 km. Assurance, vignette et Côte d'Ivoire Logistique à jour.",
+    prix:3800000, img:"assets/img/p-mt07-2024.webp", badge:"5 300 km" },
+
+  { id:"tenere-700", nom:"Yamaha Ténéré 700", cat:"Trail · World Raid",
+    desc:"Moteur CP2, réservoir 22 L, version World Raid. Papiers à jour, plaque posée.",
+    prix:0, img:"assets/img/p-tenere-700.webp", badge:"Trail" },
+
+  { id:"mt07-2022-import", nom:"Yamaha MT-07 2022", cat:"Roadster · importée",
+    desc:"Moteur CP2, 6 vitesses, réservoir 11 L. Importée, cédée hors taxe.",
+    prix:2900000, img:"assets/img/p-mt07-2022-import.webp", badge:"Hors taxe" },
+
+  { id:"mt07-2022", nom:"Yamaha MT-07 2022", cat:"Roadster · 2022",
+    desc:"Moteur CP2, 6 vitesses. Papiers à jour.",
+    prix:2800000, img:"assets/img/p-mt07-2022.webp" },
+
+  { id:"mt07-2020", nom:"Yamaha MT-07 2020", cat:"Roadster · 2020",
+    desc:"Moteur CP2, 6 vitesses, ligne d'échappement Akrapovic. Documents disponibles.",
+    prix:2900000, img:"assets/img/p-mt07-2020.webp", badge:"Akrapovic" },
+
+  { id:"cygnus-125", nom:"Yamaha Cygnus 125", cat:"Scooter · 125 cm³",
+    desc:"4 soupapes, deuxième main. Documents à jour : vignette, Côte d'Ivoire Logistique.",
+    prix:350000, img:"assets/img/p-cygnus-125.webp", badge:"Économique" }
 ];
 
-const ACCESSOIRES_DEMO = [
-  { id:"a1", nom:"Casque intégral",          cat:"Protection", desc:"Coque ABS, visière anti-rayures, homologué.",        prix:45000, img:"", badge:"Best-seller" },
-  { id:"a2", nom:"Casque jet",               cat:"Protection", desc:"Léger et aéré, idéal trajets urbains courts.",       prix:28000, img:"" },
-  { id:"a3", nom:"Gants renforcés",          cat:"Protection", desc:"Coques aux articulations, paume antidérapante.",     prix:15000, img:"" },
-  { id:"a4", nom:"Blouson de protection",    cat:"Protection", desc:"Coudières et dorsale amovibles, doublure aérée.",     prix:65000, img:"" },
-  { id:"a5", nom:"Antivol en U",             cat:"Sécurité",   desc:"Acier trempé, deux clés, support de fixation.",      prix:22000, img:"" },
-  { id:"a6", nom:"Top-case 45 L",            cat:"Bagagerie",  desc:"Verrouillable, contient deux casques intégraux.",    prix:38000, img:"" },
-  { id:"a7", nom:"Kit chaîne complet",       cat:"Pièces",     desc:"Chaîne + couronne + pignon, montage possible.",      prix:32000, img:"" },
-  { id:"a8", nom:"Huile moteur 4T · 1 L",    cat:"Entretien",  desc:"Semi-synthèse, adaptée au climat tropical.",         prix:8500,  img:"" }
-];
+/* Aucun accessoire n'est vendu en ligne pour l'instant : la section
+   « Accessoires » du site est un simple appel à contact (voir index.html).
+   Pour la remettre en catalogue, remplir ce tableau et rétablir la grille
+   #grilleAccessoires dans index.html. */
+const ACCESSOIRES_DEMO = [];
 
 const CATEGORIES = [
-  { nom:"Motos",             sous:"Vente neuve",       img:"assets/img/c-motos.webp",      lien:"#motos" },
-  { nom:"Accessoires",       sous:"Casques, gants…",   img:"assets/img/c-accessoires.webp",lien:"#accessoires" },
-  { nom:"Location moto",     sous:"Dès 15 000 F/jour", img:"assets/img/loc-moto.webp",     lien:"#location" },
-  { nom:"Location voiture",  sous:"Dès 35 000 F/jour", img:"assets/img/loc-voiture.webp",  lien:"#location" },
-  { nom:"Entretien",         sous:"Atelier Marcory",   img:"assets/img/c-entretien.webp",  lien:"#entretien" }
+  { nom:"Motos",             sous:"6 Yamaha disponibles", img:"assets/img/c-motos.webp",      lien:"#motos" },
+  { nom:"Accessoires",       sous:"Sur demande",          img:"assets/img/c-accessoires.webp",lien:"#accessoires" },
+  { nom:"Location moto",     sous:"Dès 15 000 F/jour",    img:"assets/img/loc-moto.webp",     lien:"#location" },
+  { nom:"Location voiture",  sous:"Dès 35 000 F/jour",    img:"assets/img/loc-voiture.webp",  lien:"#location" },
+  { nom:"Entretien",         sous:"Atelier Marcory",      img:"assets/img/c-entretien.webp",  lien:"#entretien" }
 ];
 
 /* ⚠️ AVIS PROVISOIRES — à remplacer par de vrais avis clients. */
@@ -132,7 +142,7 @@ function carteProduit(p) {
       <h3>${p.nom}</h3>
       <p class="produit__desc">${p.desc}</p>
       <div class="produit__bas">
-        <div class="produit__prix">${prixFR(p.prix)}<small>Prix indicatif</small></div>
+        <div class="produit__prix">${prixFR(p.prix)}<small>${p.prix > 0 ? "Prix négociable" : "Nous consulter"}</small></div>
         <button class="btn-ajout" data-ajout="${p.id}" aria-label="Ajouter ${p.nom} au panier">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>
         </button>
@@ -257,6 +267,16 @@ function rendrePanier() {
   if (bas) bas.hidden = false;
   const tot = $("#totalPanier");
   if (tot) tot.textContent = prixFR(totalPanier());
+
+  // Un article « sur devis » n'entre pas dans le total : on le dit,
+  // sinon le client croit que le total couvre toute sa sélection.
+  const mention = $("#mentionDevis");
+  if (mention) mention.hidden = !aDevis();
+}
+
+/** Vrai si le panier contient au moins un article sans prix affiché. */
+function aDevis() {
+  return panier.some(l => { const p = trouver(l.id); return p && !(p.prix > 0); });
 }
 
 function ajouter(id) {
@@ -333,7 +353,9 @@ $("#envoyerWA") && $("#envoyerWA").addEventListener("click", () => {
     const p = trouver(l.id);
     if (p) msg += "• " + p.nom + " × " + l.q + " — " + prixFR(p.prix * l.q) + "\n";
   });
-  msg += "\nTotal estimé : " + prixFR(totalPanier()) + "\n";
+  msg += "\nTotal estimé : " + prixFR(totalPanier());
+  if (aDevis()) msg += " (hors article sur devis)";
+  msg += "\n";
   if (nom)     msg += "\nNom : " + nom;
   if (tel)     msg += "\nTéléphone : " + tel;
   if (commune) msg += "\nCommune : " + commune;

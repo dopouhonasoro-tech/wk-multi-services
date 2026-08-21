@@ -56,16 +56,21 @@ WHATSAPP_NUMBER: "2250701125770"
 
 Format international, sans `+` ni espaces. C'est le numéro de la page Facebook du client.
 
-### 3. Remplacer le catalogue provisoire
+### 3. Remplacer les avis clients
 
-**Le catalogue actuel est inventé.** Noms, descriptions, prix et avis clients sont
-plausibles mais fictifs — ils servent à montrer la mise en page, pas à vendre.
+**Le catalogue des motos est réel** (6 Yamaha, photos et prix fournis par le client
+en août 2026). En revanche, **les avis clients affichés sont encore fictifs** : il faut
+les remplacer par de vrais témoignages ou supprimer la section avant toute campagne
+publicitaire payée. Le bandeau jaune en haut du site le rappelle — le retirer une fois
+le point réglé.
 
 Tout se modifie dans **`assets/js/site.js`**, en haut du fichier :
 
-- `MOTOS` et `ACCESSOIRES` — un objet par article
+- `MOTOS_DEMO` — les 6 motos réelles, un objet par machine
+- `ACCESSOIRES_DEMO` — vide : aucun accessoire n'est vendu en ligne, la section
+  « Accessoires » du site est un simple appel à contact WhatsApp
 - `CATEGORIES` — les 5 tuiles du haut
-- `TEMOINS` — les avis (à remplacer par de vrais avis, sinon les supprimer)
+- `TEMOINS` — les avis (**fictifs**, à remplacer ou supprimer)
 
 ```js
 { id:"m1", nom:"…", cat:"…", desc:"…", prix:1250000, img:"assets/img/p-moto-1.webp", badge:"Vedette" }
