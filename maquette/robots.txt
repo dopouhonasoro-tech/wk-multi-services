@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Espace privé de gestion du catalogue : ne doit pas être indexé.
+Disallow: /admin.html
+
+Sitemap: https://wkmultiservices.org/sitemap.xml

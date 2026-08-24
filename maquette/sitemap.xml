@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Le site est une page unique : toutes les rubriques (motos, location,
+  accessoires, entretien, contact) sont des ancres à l'intérieur de
+  index.html, pas des pages distinctes. Les déclarer séparément
+  reviendrait à annoncer des URLs qui n'existent pas.
+
+  admin.html est volontairement absent : c'est un espace privé, déjà
+  marqué "noindex, nofollow" et bloqué dans robots.txt.
+
+  À mettre à jour : si de vraies pages sont créées plus tard
+  (ex. /motos/yamaha-mt-07-2024), ajouter un bloc <url> par page.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://wkmultiservices.org/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>

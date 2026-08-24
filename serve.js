@@ -16,7 +16,9 @@ const TYPES = {
   '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg',
   '.svg': 'image/svg+xml',
-  '.mp4': 'video/mp4'
+  '.mp4': 'video/mp4',
+  '.xml': 'application/xml; charset=utf-8',
+  '.txt': 'text/plain; charset=utf-8'
 };
 
 http.createServer((req, res) => {
