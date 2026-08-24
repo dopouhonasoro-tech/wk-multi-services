@@ -19,8 +19,26 @@ Puis http://localhost:4175
 
 ## Déploiement
 
-Déployé sur Netlify. La configuration est dans `netlify.toml` : dossier publié `maquette/`,
-aucune commande de build.
+Site 100 % statique : aucune étape de build, n'importe quel hébergeur statique convient.
+Domaine : **https://wkmultiservices.org**
+
+### Cloudflare Pages (hébergeur actuel)
+
+Réglages à saisir une seule fois, à la création du projet :
+
+| Champ | Valeur |
+|---|---|
+| Framework preset | `None` |
+| Build command | *(laisser vide)* |
+| Build output directory | `maquette` |
+
+Les en-têtes de cache sont dans `maquette/_headers`.
+
+### Netlify (ancien hébergeur)
+
+`netlify.toml` est conservé à la racine : il suffit à reconnecter le projet à Netlify si
+besoin. Les déploiements y ont été interrompus en août 2026, le plan gratuit ayant épuisé
+ses crédits de build pour le cycle.
 
 ## Avant la mise en ligne
 
