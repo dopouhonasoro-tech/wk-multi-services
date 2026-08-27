@@ -58,28 +58,36 @@ function pixel(evt, params) {
 const MOTOS_DEMO = [
   { id:"mt07-2024", nom:"Yamaha MT-07 2024", cat:"Roadster · 2024",
     desc:"2 cylindres, 6 vitesses, 5 300 km. Assurance, vignette et Côte d'Ivoire Logistique à jour.",
-    prix:3800000, img:"assets/img/p-mt07-2024.webp", badge:"5 300 km" },
+    prix:3800000, badge:"5 300 km",
+    imgs:["assets/img/p-mt07-2024.webp","assets/img/p-mt07-2024-2.webp","assets/img/p-mt07-2024-3.webp","assets/img/p-mt07-2024-4.webp"] },
 
   { id:"tenere-700", nom:"Yamaha Ténéré 700", cat:"Trail · World Raid",
     desc:"Moteur CP2, réservoir 22 L, version World Raid. Papiers à jour, plaque posée.",
-    prix:0, img:"assets/img/p-tenere-700.webp", badge:"Trail" },
+    prix:0, badge:"Trail",
+    imgs:["assets/img/p-tenere-700.webp","assets/img/p-tenere-700-2.webp","assets/img/p-tenere-700-3.webp"] },
 
   { id:"mt07-2022-import", nom:"Yamaha MT-07 2022", cat:"Roadster · importée",
     desc:"Moteur CP2, 6 vitesses, réservoir 11 L. Importée, cédée hors taxe.",
-    prix:2900000, img:"assets/img/p-mt07-2022-import.webp", badge:"Hors taxe" },
+    prix:2900000, badge:"Hors taxe",
+    imgs:["assets/img/p-mt07-2022-import.webp","assets/img/p-mt07-2022-import-2.webp","assets/img/p-mt07-2022-import-3.webp"] },
 
   { id:"mt07-2022", nom:"Yamaha MT-07 2022", cat:"Roadster · 2022",
     desc:"Moteur CP2, 6 vitesses. Papiers à jour.",
-    prix:2800000, img:"assets/img/p-mt07-2022.webp" },
+    prix:2800000,
+    imgs:["assets/img/p-mt07-2022.webp","assets/img/p-mt07-2022-2.webp","assets/img/p-mt07-2022-3.webp"] },
 
   { id:"mt07-2020", nom:"Yamaha MT-07 2020", cat:"Roadster · 2020",
     desc:"Moteur CP2, 6 vitesses, ligne d'échappement Akrapovic. Documents disponibles.",
-    prix:2900000, img:"assets/img/p-mt07-2020.webp", badge:"Akrapovic" },
+    prix:2900000, badge:"Akrapovic",
+    imgs:["assets/img/p-mt07-2020.webp","assets/img/p-mt07-2020-2.webp","assets/img/p-mt07-2020-3.webp","assets/img/p-mt07-2020-4.webp"] },
 
   { id:"cygnus-125", nom:"Yamaha Cygnus 125", cat:"Scooter · 125 cm³",
     desc:"4 soupapes, deuxième main. Documents à jour : vignette, Côte d'Ivoire Logistique.",
-    prix:350000, img:"assets/img/p-cygnus-125.webp", badge:"Économique" }
+    prix:350000, badge:"Économique",
+    imgs:["assets/img/p-cygnus-125.webp","assets/img/p-cygnus-125-2.webp","assets/img/p-cygnus-125-3.webp","assets/img/p-cygnus-125-4.webp"] }
 ];
+// `img` (couverture, utilisée par le panier) = première photo de `imgs`.
+MOTOS_DEMO.forEach(p => { p.img = (p.imgs && p.imgs[0]) || ""; });
 
 /* Aucun accessoire n'est vendu en ligne pour l'instant : la section
    « Accessoires » du site est un simple appel à contact (voir index.html).
@@ -130,12 +138,35 @@ function imgHTML(src, alt, sm) {
   return `<picture><source media="(max-width:800px)" srcset="${petite}">${balise}</picture>`;
 }
 
+/** Galerie défilante d'un produit : plusieurs photos, le visiteur les
+ *  fait défiler lui-même (glisser au doigt, molette, ou flèches). */
+function galerieHTML(p) {
+  const imgs = Array.isArray(p.imgs) && p.imgs.length ? p.imgs : (p.img ? [p.img] : []);
+  if (!imgs.length) return "";
+
+  const diapos = imgs.map((src, i) => imgHTML(src, `${p.nom} — photo ${i + 1} sur ${imgs.length}`, true)).join("");
+
+  if (imgs.length === 1) return `<div class="produit__piste">${diapos}</div>`;
+
+  const points = imgs.map((_, i) => `<span${i === 0 ? ' class="actif"' : ""}></span>`).join("");
+  return `
+    <div class="produit__piste" data-piste tabindex="0" aria-label="Photos de ${p.nom}, faites défiler pour voir les autres angles">${diapos}</div>
+    <div class="produit__points" aria-hidden="true">${points}</div>
+    <button class="produit__fleche produit__fleche--g" data-fleche="-1" aria-label="Photo précédente">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <button class="produit__fleche produit__fleche--d" data-fleche="1" aria-label="Photo suivante">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 18l6-6-6-6"/></svg>
+    </button>`;
+}
+
 function carteProduit(p) {
+  const aDesPhotos = Array.isArray(p.imgs) ? p.imgs.length > 0 : !!p.img;
   return `
   <article class="produit" data-id="${p.id}">
-    <div class="produit__img${p.img ? "" : " sans-img"}">
+    <div class="produit__img${aDesPhotos ? "" : " sans-img"}">
       ${p.badge ? `<span class="produit__badge">${p.badge}</span>` : ""}
-      ${imgHTML(p.img, p.nom)}
+      ${galerieHTML(p)}
     </div>
     <div class="produit__corps">
       <div class="produit__cat">${p.cat}</div>
@@ -160,10 +191,24 @@ let MOTOS = MOTOS_DEMO;
 let ACCESSOIRES = ACCESSOIRES_DEMO;
 let TOUS = [...MOTOS, ...ACCESSOIRES];
 
+/** Relie chaque galerie de photos à ses points : le point actif suit
+ *  la photo affichée pendant que le visiteur fait défiler. */
+function initGaleries(racine) {
+  if (!racine) return;
+  $$(".produit__piste[data-piste]", racine).forEach(piste => {
+    const points = piste.parentElement.querySelectorAll(".produit__points span");
+    if (!points.length) return;
+    piste.addEventListener("scroll", () => {
+      const i = Math.round(piste.scrollLeft / piste.clientWidth);
+      points.forEach((pt, idx) => pt.classList.toggle("actif", idx === i));
+    }, { passive: true });
+  });
+}
+
 function rendreProduits(majPanier) {
   TOUS = [...MOTOS, ...ACCESSOIRES];
-  if (grilleMotos) grilleMotos.innerHTML = MOTOS.map(carteProduit).join("");
-  if (grilleAcc)   grilleAcc.innerHTML   = ACCESSOIRES.map(carteProduit).join("");
+  if (grilleMotos) { grilleMotos.innerHTML = MOTOS.map(carteProduit).join(""); initGaleries(grilleMotos); }
+  if (grilleAcc)   { grilleAcc.innerHTML   = ACCESSOIRES.map(carteProduit).join(""); initGaleries(grilleAcc); }
   // Ce premier appel a lieu avant que `panier` (section 4, plus bas) existe :
   // rendrePanier() n'est déclenché que sur les appels suivants (catalogue en direct).
   if (majPanier !== false) rendrePanier();
@@ -293,6 +338,13 @@ function ajouter(id) {
 }
 
 document.addEventListener("click", e => {
+  const fleche = e.target.closest("[data-fleche]");
+  if (fleche) {
+    const piste = fleche.parentElement.querySelector(".produit__piste");
+    if (piste) piste.scrollBy({ left: piste.clientWidth * Number(fleche.dataset.fleche), behavior: "smooth" });
+    return;
+  }
+
   const a = e.target.closest("[data-ajout]");
   if (a) { ajouter(a.dataset.ajout); return; }
 
