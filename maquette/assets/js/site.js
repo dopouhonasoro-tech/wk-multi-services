@@ -61,30 +61,22 @@ const MOTOS_DEMO = [
     prix:3800000, badge:"5 300 km",
     imgs:["assets/img/p-mt07-2024.webp","assets/img/p-mt07-2024-2.webp","assets/img/p-mt07-2024-3.webp","assets/img/p-mt07-2024-4.webp"] },
 
-  { id:"tenere-700", nom:"Yamaha Ténéré 700", cat:"Trail · World Raid",
-    desc:"Moteur CP2, réservoir 22 L, version World Raid. Papiers à jour, plaque posée.",
-    prix:0, badge:"Trail",
-    imgs:["assets/img/p-tenere-700.webp","assets/img/p-tenere-700-2.webp","assets/img/p-tenere-700-3.webp"] },
-
   { id:"mt07-2022-import", nom:"Yamaha MT-07 2022", cat:"Roadster · importée",
     desc:"Moteur CP2, 6 vitesses, réservoir 11 L. Importée, cédée hors taxe.",
     prix:2900000, badge:"Hors taxe",
     imgs:["assets/img/p-mt07-2022-import.webp","assets/img/p-mt07-2022-import-2.webp","assets/img/p-mt07-2022-import-3.webp"] },
 
-  { id:"mt07-2022", nom:"Yamaha MT-07 2022", cat:"Roadster · 2022",
-    desc:"Moteur CP2, 6 vitesses. Papiers à jour.",
-    prix:2800000,
-    imgs:["assets/img/p-mt07-2022.webp","assets/img/p-mt07-2022-2.webp","assets/img/p-mt07-2022-3.webp"] },
-
   { id:"mt07-2020", nom:"Yamaha MT-07 2020", cat:"Roadster · 2020",
     desc:"Moteur CP2, 6 vitesses, ligne d'échappement Akrapovic. Documents disponibles.",
     prix:2900000, badge:"Akrapovic",
-    imgs:["assets/img/p-mt07-2020.webp","assets/img/p-mt07-2020-2.webp","assets/img/p-mt07-2020-3.webp","assets/img/p-mt07-2020-4.webp"] },
+    imgs:["assets/img/p-mt07-2020.webp","assets/img/p-mt07-2020-2.webp","assets/img/p-mt07-2020-3.webp","assets/img/p-mt07-2020-4.webp"] }
 
-  { id:"cygnus-125", nom:"Yamaha Cygnus 125", cat:"Scooter · 125 cm³",
-    desc:"4 soupapes, deuxième main. Documents à jour : vignette, Côte d'Ivoire Logistique.",
-    prix:350000, badge:"Économique",
-    imgs:["assets/img/p-cygnus-125.webp","assets/img/p-cygnus-125-2.webp","assets/img/p-cygnus-125-3.webp","assets/img/p-cygnus-125-4.webp"] }
+  /* Vendues, retirées du catalogue le 2026-09-08 :
+     - Yamaha Ténéré 700 (id "tenere-700")
+     - Yamaha MT-07 2022 à 2 800 000 F (id "mt07-2022")
+     - Yamaha Cygnus 125 (id "cygnus-125")
+     Les photos restent dans assets/img/ (inoffensif, juste inutilisé) ;
+     remettre un bloc ici pour les republier si une même moto revient en stock. */
 ];
 // `img` (couverture, utilisée par le panier) = première photo de `imgs`.
 MOTOS_DEMO.forEach(p => { p.img = (p.imgs && p.imgs[0]) || ""; });
@@ -96,7 +88,7 @@ MOTOS_DEMO.forEach(p => { p.img = (p.imgs && p.imgs[0]) || ""; });
 const ACCESSOIRES_DEMO = [];
 
 const CATEGORIES = [
-  { nom:"Motos",             sous:"6 Yamaha disponibles", img:"assets/img/c-motos.webp",      lien:"#motos" },
+  { nom:"Motos",             sous:`${MOTOS_DEMO.length} Yamaha disponibles`, img:"assets/img/c-motos.webp", lien:"#motos" },
   { nom:"Accessoires",       sous:"Sur demande",          img:"assets/img/c-accessoires.webp",lien:"#accessoires" },
   { nom:"Location moto",     sous:"Dès 15 000 F/jour",    img:"assets/img/loc-moto.webp",     lien:"#location" },
   { nom:"Location voiture",  sous:"Dès 35 000 F/jour",    img:"assets/img/loc-voiture.webp",  lien:"#location" },
