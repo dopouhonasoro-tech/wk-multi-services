@@ -69,7 +69,17 @@ const MOTOS_DEMO = [
   { id:"mt07-2020", nom:"Yamaha MT-07 2020", cat:"Roadster · 2020",
     desc:"Moteur CP2, 6 vitesses, ligne d'échappement Akrapovic. Documents disponibles.",
     prix:2900000, badge:"Akrapovic",
-    imgs:["assets/img/p-mt07-2020.webp","assets/img/p-mt07-2020-2.webp","assets/img/p-mt07-2020-3.webp","assets/img/p-mt07-2020-4.webp"] }
+    imgs:["assets/img/p-mt07-2020.webp","assets/img/p-mt07-2020-2.webp","assets/img/p-mt07-2020-3.webp","assets/img/p-mt07-2020-4.webp"] },
+
+  { id:"bmw-s1000r", nom:"BMW S1000R 2023", cat:"Roadster · 4 cylindres",
+    desc:"4 cylindres, écran TFT, shifter up, 28 000 km. Ligne d'échappement Black Windows, 2 clés, documents disponibles.",
+    prix:5000000, badge:"4 cylindres",
+    imgs:["assets/img/p-bmw-s1000r.webp","assets/img/p-bmw-s1000r-2.webp","assets/img/p-bmw-s1000r-3.webp","assets/img/p-bmw-s1000r-4.webp"] },
+
+  { id:"tenere-2024", nom:"Yamaha Ténéré 2024", cat:"Trail · 2024",
+    desc:"Moteur CP2, 6 vitesses, 10 500 km. Assurance, vignette et Côte d'Ivoire Logistique à jour.",
+    prix:4850000, badge:"10 500 km",
+    imgs:["assets/img/p-tenere-2024.webp","assets/img/p-tenere-2024-2.webp","assets/img/p-tenere-2024-3.webp"] }
 
   /* Vendues, retirées du catalogue le 2026-09-08 :
      - Yamaha Ténéré 700 (id "tenere-700")
@@ -88,7 +98,7 @@ MOTOS_DEMO.forEach(p => { p.img = (p.imgs && p.imgs[0]) || ""; });
 const ACCESSOIRES_DEMO = [];
 
 const CATEGORIES = [
-  { nom:"Motos",             sous:`${MOTOS_DEMO.length} Yamaha disponibles`, img:"assets/img/c-motos.webp", lien:"#motos" },
+  { nom:"Motos",             sous:`${MOTOS_DEMO.length} motos disponibles`, img:"assets/img/c-motos.webp", lien:"#motos" },
   { nom:"Accessoires",       sous:"Sur demande",          img:"assets/img/c-accessoires.webp",lien:"#accessoires" },
   { nom:"Location moto",     sous:"Dès 15 000 F/jour",    img:"assets/img/loc-moto.webp",     lien:"#location" },
   { nom:"Location voiture",  sous:"Dès 35 000 F/jour",    img:"assets/img/loc-voiture.webp",  lien:"#location" },
