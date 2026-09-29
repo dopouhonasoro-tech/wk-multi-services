@@ -56,15 +56,10 @@ function pixel(evt, params) {
      badge  : étiquette orange facultative
    ═══════════════════════════════════════════════════════════════ */
 const MOTOS_DEMO = [
-  { id:"mt07-2024", nom:"Yamaha MT-07 2024", cat:"Roadster · 2024",
-    desc:"2 cylindres, 6 vitesses, 5 300 km. Assurance, vignette et Côte d'Ivoire Logistique à jour.",
-    prix:3800000, badge:"5 300 km",
-    imgs:["assets/img/p-mt07-2024.webp","assets/img/p-mt07-2024-2.webp","assets/img/p-mt07-2024-3.webp","assets/img/p-mt07-2024-4.webp"] },
-
   { id:"mt07-2022-import", nom:"Yamaha MT-07 2022", cat:"Roadster · importée",
     desc:"Moteur CP2, 6 vitesses, réservoir 11 L. Importée, cédée hors taxe.",
     prix:2900000, badge:"Hors taxe",
-    imgs:["assets/img/p-mt07-2022-import.webp","assets/img/p-mt07-2022-import-2.webp","assets/img/p-mt07-2022-import-3.webp"] },
+    imgs:["assets/img/p-mt07-2022-import.webp","assets/img/p-mt07-2022-import-2.webp"] },
 
   { id:"mt07-2020", nom:"Yamaha MT-07 2020", cat:"Roadster · 2020",
     desc:"Moteur CP2, 6 vitesses, ligne d'échappement Akrapovic. Documents disponibles.",
